@@ -1,0 +1,390 @@
+/** 
+* Paste one or more documents here
+*/
+{
+  "name": "Bathinda",
+  "totalOutlets": 0,
+  "salePerson": {
+    "$oid": "680c790f7b8233e284e4e653"
+  },
+  "isVisitedToday": false,
+  "lastVisitedDate": {
+    "$date": "2025-08-04T03:35:58.165Z"
+  },
+  "coverAllOutlets": false,
+  "outlets": [],
+  "createdAt": {
+    "$date": "2025-08-04T03:35:54.028Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-04T18:31:00.352Z"
+  },
+  "__v": 0
+}
+
+{
+  "_id": {
+    "$oid": "688d93f66c4c54b70da6da70"
+  },
+  "name": "Suratgarh",
+  "totalOutlets": 9,
+  "salePerson": {
+    "$oid": "680c790f7b8233e284e4e653"
+  },
+  "isVisitedToday": false,
+  "lastVisitedDate": {
+    "$date": "2025-08-02T06:14:10.453Z"
+  },
+  "coverAllOutlets": false,
+  "outlets": [
+    {
+      "outlet": {
+        "$oid": "688dad3987da5106a6b91060"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90435791015625,
+              29.323965072631836
+            ],
+            "address": "8WF3+JQ4, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 83,
+            "timestamp": {
+              "$date": "2025-08-02T06:16:31.169Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688dad3c87da5106a6b9106a"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T06:16:31.604Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688dad3987da5106a6b91062"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688db4b05366286283a07da2"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90438079833984,
+              29.32378387451172
+            ],
+            "address": "8WF3+GP2, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 80,
+            "timestamp": {
+              "$date": "2025-08-02T06:48:42.763Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688db4c75366286283a07db0"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T06:48:43.232Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688db4b05366286283a07da4"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688dd811411fa4757591d7ac"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90623474121094,
+              29.321224212646484
+            ],
+            "address": "8WC4+5C2, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 69,
+            "timestamp": {
+              "$date": "2025-08-02T09:19:27.801Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688dd818411fa4757591d7be"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T09:19:28.244Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688dd812411fa4757591d7ae"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688dd8fc411fa4757591d7f2"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90623474121094,
+              29.321224212646484
+            ],
+            "address": "8WC4+5C2, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 69,
+            "timestamp": {
+              "$date": "2025-08-02T09:23:14.823Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688dd900411fa4757591d808"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T09:23:15.281Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688dd8fc411fa4757591d7f4"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688dd9c3411fa4757591d848"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90567779541016,
+              29.321590423583984
+            ],
+            "address": "8WC4+5C2, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 68,
+            "timestamp": {
+              "$date": "2025-08-02T09:26:34.757Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688dd9c7411fa4757591d862"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T09:26:35.211Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688dd9c3411fa4757591d84a"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688de26a859eb1510c982833"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90573120117188,
+              29.323379516601562
+            ],
+            "address": "8WF4+7GC, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 66,
+            "timestamp": {
+              "$date": "2025-08-02T10:03:31.337Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688de270859eb1510c982851"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T10:03:31.831Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688de26a859eb1510c982835"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688de6ca859eb1510c9829f7"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.9056625366211,
+              29.31305694580078
+            ],
+            "address": "8W74+64F, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 63,
+            "timestamp": {
+              "$date": "2025-08-02T10:22:09.388Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688de6ce859eb1510c982a19"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T10:22:09.702Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688de6ca859eb1510c9829f9"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688de8e0b26fac30537bac72"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.9056625366211,
+              29.31305694580078
+            ],
+            "address": "8W74+64F, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 62,
+            "timestamp": {
+              "$date": "2025-08-02T10:31:04.788Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688de8e5b26fac30537bac98"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T10:31:05.101Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688de8e0b26fac30537bac74"
+      }
+    },
+    {
+      "outlet": {
+        "$oid": "688de996b26fac30537bad08"
+      },
+      "dailyVisits": [
+        {
+          "date": {
+            "$date": "2025-08-02T00:00:00.000Z"
+          },
+          "isVisited": true,
+          "captureLocation": {
+            "type": "Point",
+            "coordinates": [
+              73.90425872802734,
+              29.324007034301758
+            ],
+            "address": "Farm Complex, Suratgarh, Rajasthan, 335804, India",
+            "accuracy": 1,
+            "speed": 0.0277777798473835,
+            "batteryLevel": 62,
+            "timestamp": {
+              "$date": "2025-08-02T10:34:22.208Z"
+            }
+          },
+          "todayOrders": 0,
+          "_id": {
+            "$oid": "688de9aab26fac30537bad32"
+          },
+          "visitTime": {
+            "$date": "2025-08-02T10:34:22.522Z"
+          }
+        }
+      ],
+      "totalOrders": 0,
+      "_id": {
+        "$oid": "688de996b26fac30537bad0a"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-08-02T04:28:38.376Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-02T18:31:00.350Z"
+  },
+  "__v": 18
+}
