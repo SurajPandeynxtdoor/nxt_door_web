@@ -1,4 +1,3 @@
-// src/app/orders/[id]/page.tsx
 import type { Metadata } from "next";
 import Script from "next/script";
 import Footer from "@/components/common/Footer";
@@ -15,11 +14,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function OrderDetailsPage({
+export default async function OrderDetailsPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = await params;
   const breadcrumbLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -40,7 +40,7 @@ export default function OrderDetailsPage({
         "@type": "ListItem",
         position: 3,
         name: "Order Details",
-        item: `https://www.nxtdoorretail.com/orders/${params.id}`,
+        item: `https://www.nxtdoorretail.com/orders/${id}`,
       },
     ],
   };
@@ -52,7 +52,7 @@ export default function OrderDetailsPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <OrderDetailsClient orderId={params.id} />
+      <OrderDetailsClient orderId={id} />
       <Footer />
     </main>
   );
