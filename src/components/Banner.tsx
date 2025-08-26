@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -15,15 +15,20 @@ type BannerData = {
 export default function Banner({ bannerData }: { bannerData: BannerData[] }) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const nextSlide = () =>
-    setCurrentSlide((prev) => (prev === bannerData.length - 1 ? 0 : prev + 1));
+  const nextSlide = useCallback(
+    () =>
+      setCurrentSlide((prev) =>
+        prev === bannerData.length - 1 ? 0 : prev + 1
+      ),
+    [bannerData.length]
+  );
   const prevSlide = () =>
     setCurrentSlide((prev) => (prev === 0 ? bannerData.length - 1 : prev - 1));
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
-  }, [bannerData.length]);
+    const id = setInterval(nextSlide, 4000);
+    return () => clearInterval(id);
+  }, [nextSlide]);
 
   return (
     <div className="relative w-full overflow-hidden rounded-b-2xl">
