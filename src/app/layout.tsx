@@ -8,6 +8,7 @@ import Header from "@/components/common/Header";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.nxtdoorretail.com"),
   title: "NxtDoor Retail",
   description: "Your trusted FMCG retail partner",
   keywords: [
@@ -117,6 +118,33 @@ export const metadata: Metadata = {
   authors: [{ name: "NxtDoor Retail" }],
   creator: "NxtDoor Retail",
   publisher: "NxtDoor Retail",
+  openGraph: {
+    title: "NxtDoor Retail",
+    description: "Your trusted FMCG retail partner",
+    url: "https://www.nxtdoorretail.com/",
+    siteName: "NxtDoor Retail",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "NxtDoor Retail",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "NxtDoor Retail",
+    description: "Your trusted FMCG retail partner",
+    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
+  themeColor: "#ffffff",
   robots: {
     index: true,
     follow: true,
@@ -127,6 +155,9 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
+  },
+  verification: {
+    google: "2fb18f2c27b216d3",
   },
 };
 

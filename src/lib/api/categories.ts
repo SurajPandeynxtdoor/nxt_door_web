@@ -9,8 +9,20 @@ export interface CategoryListResponse {
 }
 
 export async function fetchCategories(): Promise<Category[]> {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/category-list`;
-  const res = await fetch(url, { next: { revalidate: 3600 } });
+  const base = process.env.NEXT_PUBLIC_API_URL;
+  if (!base) return []; // don’t block build if env missing
+
+  const url = `${base}/api/category-list`;
+
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 5000);
+
+  const res = await fetch(url, {
+    next: { revalidate: 3600 },
+    signal: controller.signal,
+  });
+  clearTimeout(t);
+
   if (!res.ok) throw new Error("Failed to fetch categories");
   const data = await res.json();
   if (Array.isArray(data)) return data;
@@ -29,31 +41,28 @@ export async function fetchCategoryProducts({
   limit?: number;
   sort?: string;
 }): Promise<CategoryListResponse> {
+  const base = process.env.NEXT_PUBLIC_API_URL;
+  if (!base) throw new Error("API base missing");
+
   const params = new URLSearchParams({
     page: String(page),
     limit: String(limit),
     sort,
   });
+  const url = `${base}/api/home/category/${categoryId}?${params.toString()}`;
 
-  const url = `${
-    process.env.NEXT_PUBLIC_API_URL
-  }/api/home/category/${categoryId}?${params.toString()}`;
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 5000);
 
-  console.log("Fetching category products from:", url); // Debug log
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    signal: controller.signal,
+  });
+  clearTimeout(t);
 
-  const res = await fetch(url, { next: { revalidate: 60 } });
-
-  if (!res.ok) {
-    console.error("API Error:", res.status, res.statusText); // Debug log
+  if (!res.ok)
     throw new Error(`Failed to fetch category products: ${res.statusText}`);
-  }
-
   const data = await res.json();
-  console.log("API Response:", data); // Debug log
-
-  if (data.error) {
-    throw new Error(data.message || "Unknown error from API");
-  }
-
+  if (data.error) throw new Error(data.message || "Unknown error from API");
   return data;
 }

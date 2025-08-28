@@ -3,6 +3,9 @@ import Script from "next/script";
 import CartPageClient from "@/components/CartPageClient";
 import Footer from "@/components/common/Footer";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Shopping Cart | NxtDoor Retail",
   description:

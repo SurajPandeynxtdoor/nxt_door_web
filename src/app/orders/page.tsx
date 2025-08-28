@@ -4,6 +4,9 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 import MyOrdersClient from "@/components/MyOrdersClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "My Orders | NxtDoor Retail",
   description: "Track your orders and view your order history.",

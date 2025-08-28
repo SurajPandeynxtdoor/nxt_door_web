@@ -4,6 +4,9 @@ import Footer from "@/components/common/Footer";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Contact Us | NxtDoor Retail",
   description:

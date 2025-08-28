@@ -6,6 +6,9 @@ import { fetchProducts } from "@/lib/api/products";
 import CategoryNavBarWrapper from "@/components/CategoryNavBarWrapper";
 import Script from "next/script";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title:
     "NxtDoor Retail | Buy Best FMCG Products Online - Clean, Honest, Wholesome Foods",
@@ -62,9 +65,6 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code", // Add your Google Search Console verification code
-  },
 };
 
 const bannerData = [
@@ -93,11 +93,16 @@ const bannerData = [
 ];
 
 export default async function HomePage() {
-  const productsData = await fetchProducts({
-    page: 1,
-    limit: 50,
-    sort: "createdAt",
-  });
+  let productsData = null;
+  try {
+    productsData = await fetchProducts({
+      page: 1,
+      limit: 50,
+      sort: "createdAt",
+    });
+  } catch {
+    productsData = null;
+  }
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -165,6 +170,24 @@ export default async function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(productStructuredData),
+        }}
+      />
+      <Script
+        id="website-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "NxtDoor Retail",
+            url: "https://www.nxtdoorretail.com",
+            potentialAction: {
+              "@type": "SearchAction",
+              target:
+                "https://www.nxtdoorretail.com/?search={search_term_string}",
+              "query-input": "required name=search_term_string",
+            },
+          }),
         }}
       />
       <CategoryNavBarWrapper />

@@ -4,6 +4,9 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 import ManageAddressClient from "@/components/ManageAddressClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Manage Addresses | NxtDoor Retail",
   description: "Add, edit, and remove your delivery addresses.",

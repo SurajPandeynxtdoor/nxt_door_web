@@ -40,6 +40,21 @@ export async function generateMetadata({
         category.description ||
         `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from NxtDoor Retail.`,
       keywords: `${category.name}, natural products, organic, wholesome foods, NxtDoor Retail`,
+      alternates: {
+        canonical: `https://www.nxtdoorretail.com/category/${category.name
+          .toLowerCase()
+          .replace(/\s+/g, "-")}/${category._id}`,
+      },
+      openGraph: {
+        title: `${category.name} - Natural & Organic Products | NxtDoor Retail`,
+        description:
+          category.description ||
+          `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from NxtDoor Retail.`,
+        url: `https://www.nxtdoorretail.com/category/${category.name
+          .toLowerCase()
+          .replace(/\s+/g, "-")}/${category._id}`,
+        type: "website",
+      },
     };
   } catch (error) {
     console.error("Error loading category metadata:", error);
@@ -52,6 +67,8 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   try {
+    const api = process.env.NEXT_PUBLIC_API_URL;
+    if (!api) return []; // skip pregen if API base missing
     const categories = await fetchCategories();
     return categories.map((category) => ({
       slug: category.name.toLowerCase().replace(/\s+/g, "-"),
@@ -104,8 +121,36 @@ export default async function CategoryPage({
 
     console.log(currentCategory);
 
+    // Breadcrumb JSON-LD for category
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.nxtdoorretail.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: currentCategory.name,
+          item: `https://www.nxtdoorretail.com/category/${currentCategory.name
+            .toLowerCase()
+            .replace(/\s+/g, "-")}/${id}`,
+        },
+      ],
+    };
+
     return (
       <main className="min-h-screen bg-gray-50">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbJsonLd),
+          }}
+        />
         <CategoryNavBarWrapper />
 
         {/* Category Banner */}

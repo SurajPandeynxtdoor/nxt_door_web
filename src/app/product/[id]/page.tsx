@@ -4,6 +4,7 @@ import { fetchProductDetails } from "@/lib/api/products";
 import CategoryNavBarWrapper from "@/components/CategoryNavBarWrapper";
 import ProductDetailSection from "@/components/ProductDetailSection";
 import Footer from "@/components/common/Footer";
+import Script from "next/script";
 
 interface ProductPageProps {
   params: Promise<{
@@ -37,7 +38,8 @@ export async function generateMetadata({
       title: `${product.name} - ${brandName} | ${categoryName} | NxtDoor Retail`,
       description:
         product.description ||
-        `Buy ${product.name} from ${brandName} at NxtDoor Retail. ${categoryName} - Clean, honest, and wholesome foods.`,
+        `Buy ${product.name} from ${brandName} at NxtDoor Retail. ${categoryName} - Clean, honest, and wholesome foods.
+        it is good and healthy for health`,
       keywords: [
         product.name.toLowerCase(),
         brandName.toLowerCase(),
@@ -55,6 +57,7 @@ export async function generateMetadata({
           product.description ||
           `Buy ${product.name} from ${brandName} at NxtDoor Retail. Clean, honest, and wholesome foods.`,
         type: "website",
+        url: `https://www.nxtdoorretail.com/product/${id}`,
         images: [
           {
             url: image.startsWith("http")
@@ -147,12 +150,63 @@ export default async function ProductPage({ params }: ProductPageProps) {
       },
     };
 
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://www.nxtdoorretail.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Products",
+          item: "https://www.nxtdoorretail.com/",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: product.name,
+          item: `https://www.nxtdoorretail.com/product/${id}`,
+        },
+      ],
+    };
+
     return (
       <main className="min-h-screen bg-gray-50">
-        <script
+        <Script
+          id="product-structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
+          }}
+        />
+        <Script
+          id="breadcrumb-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbJsonLd),
+          }}
+        />
+        <Script
+          id="website-structured-data"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "NxtDoor Retail",
+              url: "https://www.nxtdoorretail.com",
+              potentialAction: {
+                "@type": "SearchAction",
+                target:
+                  "https://www.nxtdoorretail.com/?search={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
           }}
         />
 

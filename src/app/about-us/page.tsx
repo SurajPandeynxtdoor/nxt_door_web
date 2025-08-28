@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Footer from "@/components/common/Footer";
-// import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -201,28 +201,28 @@ export default function AboutUsPage() {
           </h2>
           <div className="flex flex-wrap justify-center gap-8">
             <div className="flex flex-col items-center">
-              {/* <Image
-                src="https://randomuser.me/api/portraits/men/32.jpg"
+              <Image
+                src="/images/abhimanyu.jpeg"
                 alt="Founder"
                 width={96}
                 height={96}
                 unoptimized
                 className="w-24 h-24 rounded-full mb-3 object-cover border-4 border-[#00B7CD]"
-              /> */}
+              />
               <h4 className="font-semibold text-lg text-gray-800">
                 Shailendra Pandey
               </h4>
               <p className="text-sm text-gray-500">Founder & CEO</p>
             </div>
             <div className="flex flex-col items-center">
-              {/* <Image
-                src="https://randomuser.me/api/portraits/women/44.jpg"
+              <Image
+                src="/images/abhimanyu.jpeg"
                 alt="Co-Founder"
                 width={96}
                 height={96}
                 unoptimized
                 className="w-24 h-24 rounded-full mb-3 object-cover border-4 border-[#00B7CD]"
-              /> */}
+              />
               <h4 className="font-semibold text-lg text-gray-800">
                 Priya Sharma
               </h4>

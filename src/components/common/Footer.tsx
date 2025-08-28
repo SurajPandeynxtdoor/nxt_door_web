@@ -11,7 +11,7 @@ import {
   Truck,
   IndianRupee,
 } from "lucide-react";
-import { fetchCategories } from "@/lib/api/categories"; // You need to implement this API util
+import { fetchCategories } from "@/lib/api/categories";
 import { Category } from "@/types/catalog";
 import Image from "next/image";
 import NewsletterForm from "./NewsletterForm";

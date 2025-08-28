@@ -4,6 +4,9 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 import ProfileClient from "@/components/ProfileClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "My Profile | NxtDoor Retail",
   description: "View and manage your profile, orders, and addresses.",

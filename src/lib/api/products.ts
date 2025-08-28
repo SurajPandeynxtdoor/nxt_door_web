@@ -36,34 +36,42 @@ export async function fetchProducts({
     search,
     filter,
   });
+  const url = `${
+    process.env.NEXT_PUBLIC_API_URL
+  }/api/home/products?${params.toString()}`;
 
-  const url = `${process.env.API_URL}/api/home/products?${params.toString()}`;
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 5000);
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch products: ${res.statusText}`);
-  }
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    signal: controller.signal,
+  });
+  clearTimeout(t);
+
+  if (!res.ok) throw new Error(`Failed to fetch products: ${res.statusText}`);
   const data = await res.json();
-  if (data.error) {
-    throw new Error(data.message || "Unknown error from API");
-  }
-
+  if (data.error) throw new Error(data.message || "Unknown error from API");
   return data;
 }
 
 export async function fetchProductDetails(
   productId: string
 ): Promise<ProductDetailResponse> {
-  const url = `${process.env.API_URL}/api/home/product/${productId}`;
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/api/home/product/${productId}`;
 
-  if (!res.ok) {
+  const controller = new AbortController();
+  const t = setTimeout(() => controller.abort(), 5000);
+
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    signal: controller.signal,
+  });
+  clearTimeout(t);
+
+  if (!res.ok)
     throw new Error(`Failed to fetch product details: ${res.statusText}`);
-  }
   const data = await res.json();
-  if (data.error) {
-    throw new Error(data.message || "Unknown error from API");
-  }
-
+  if (data.error) throw new Error(data.message || "Unknown error from API");
   return data;
 }

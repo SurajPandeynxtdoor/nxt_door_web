@@ -4,6 +4,9 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 import PaymentPageClient from "@/components/paymentPageClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Payment | NxtDoor Retail",
   description: "Choose payment method and complete your order.",

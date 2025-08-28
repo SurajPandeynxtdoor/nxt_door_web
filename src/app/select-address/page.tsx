@@ -4,6 +4,9 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 import SelectAddressClient from "@/components/SelectAddressClient";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata: Metadata = {
   title: "Select Address | NxtDoor Retail",
   description: "Choose your delivery address to proceed to payment.",
