@@ -14,7 +14,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.onlytruthnosecrets.com"),
-  title: "Only Truth No Secrets",
+  title: {
+    default: "Only Truth No Secrets",
+    template: "%s | Only Truth No Secrets",
+  },
   description: "Your trusted FMCG retail partner",
   keywords: [
     // Brand and general terms

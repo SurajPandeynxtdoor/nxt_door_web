@@ -80,7 +80,8 @@ export async function generateStaticParams() {
   }
 }
 
-export const dynamic = "force-dynamic";
+// Category pages can be revalidated periodically
+export const revalidate = 600; // 10 minutes
 
 export default async function CategoryPage({
   params,

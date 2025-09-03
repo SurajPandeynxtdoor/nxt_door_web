@@ -6,8 +6,9 @@ import { fetchProducts } from "@/lib/api/products";
 import CategoryNavBarWrapper from "@/components/CategoryNavBarWrapper";
 import Script from "next/script";
 
+// Home needs fresh products but can be cached briefly for speed
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const revalidate = 300; // 5 minutes ISR for homepage
 
 export const metadata: Metadata = {
   title:

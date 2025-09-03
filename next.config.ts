@@ -29,6 +29,26 @@ const nextConfig = {
       },
     ],
   },
+  headers: async () => {
+    return [
+      {
+        source: "/:all*(css|js)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+        ],
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

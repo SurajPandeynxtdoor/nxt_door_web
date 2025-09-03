@@ -6,6 +6,9 @@ import ProductDetailSection from "@/components/ProductDetailSection";
 import Footer from "@/components/common/Footer";
 import Script from "next/script";
 
+// Product details can be cached briefly; refresh on new requests
+export const revalidate = 300; // 5 minutes
+
 interface ProductPageProps {
   params: Promise<{
     id: string;

@@ -4,8 +4,8 @@ import Footer from "@/components/common/Footer";
 import { Mail, Phone, MapPin } from "lucide-react";
 import ContactForm from "@/components/ContactForm";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// Contact page content is static; enable ISR to reduce server cost
+export const revalidate = 86400; // 24 hours
 
 export const metadata: Metadata = {
   title: "Contact Us | Only Truth No Secrets",
