@@ -8,42 +8,42 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Contact Us | NxtDoor Retail",
+  title: "Contact Us | Only Truth No Secrets",
   description:
-    "Get in touch with NxtDoor Retail. Contact us for support, feedback, partnership opportunities, or general inquiries.",
+    "Get in touch with Only Truth No Secrets. Contact us for support, feedback, partnership opportunities, or general inquiries.",
   keywords: [
     "contact",
     "support",
     "customer service",
     "help",
-    "NxtDoor Retail",
+    "Only Truth No Secrets",
     "email",
     "phone",
     "address",
   ],
-  alternates: { canonical: "https://www.nxtdoorretail.com/contact-us" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/contact-us" },
   openGraph: {
-    title: "Contact Us | NxtDoor Retail",
+    title: "Contact Us | Only Truth No Secrets",
     description:
-      "Reach out to NxtDoor Retail for support, feedback, or business queries.",
-    url: "https://www.nxtdoorretail.com/contact-us",
-    siteName: "NxtDoor Retail",
+      "Reach out to Only Truth No Secrets for support, feedback, or business queries.",
+    url: "https://www.onlytruthnosecrets.com/contact-us",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Contact Us",
+        alt: "Only Truth No Secrets - Contact Us",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Us | NxtDoor Retail",
+    title: "Contact Us | Only Truth No Secrets",
     description:
-      "Reach out to NxtDoor Retail for support, feedback, or business queries.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+      "Reach out to Only Truth No Secrets for support, feedback, or business queries.",
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -67,13 +67,13 @@ export default function ContactPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Contact Us",
-        item: "https://www.nxtdoorretail.com/contact-us",
+        item: "https://www.onlytruthnosecrets.com/contact-us",
       },
     ],
   };
@@ -82,11 +82,11 @@ export default function ContactPage() {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     name: "Contact Us",
-    url: "https://www.nxtdoorretail.com/contact-us",
+    url: "https://www.onlytruthnosecrets.com/contact-us",
     mainEntity: {
       "@type": "Organization",
-      name: "NxtDoor Retail",
-      url: "https://www.nxtdoorretail.com",
+      name: "Only Truth No Secrets",
+      url: "https://www.onlytruthnosecrets.com",
       contactPoint: [
         {
           "@type": "ContactPoint",
@@ -109,7 +109,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Script
         id="contact-breadcrumb-ld"
         type="application/ld+json"

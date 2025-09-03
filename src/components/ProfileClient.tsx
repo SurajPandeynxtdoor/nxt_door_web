@@ -76,7 +76,7 @@ const ProfileClient = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen  py-8">
       <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
         <div className="bg-white rounded-xl shadow p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
           <div className="flex items-center gap-4">
@@ -153,7 +153,7 @@ const ProfileClient = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl shadow p-6 flex flex-col items-center justify-center">
+          <div className="rounded-xl shadow p-6 flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-2">
               <span className="text-gray-600 text-sm">
                 Download the APP to track your orders and get notifications on

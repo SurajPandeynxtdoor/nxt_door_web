@@ -83,7 +83,7 @@ const ManageAddressClient = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6 mt-8 max-w-2xl mx-auto">
+      <div className="rounded-lg shadow-sm p-6 mt-8 max-w-2xl mx-auto">
         <div className="flex justify-center items-center h-full">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500" />
         </div>
@@ -93,14 +93,14 @@ const ManageAddressClient = () => {
 
   if (error) {
     return (
-      <div className="bg-white rounded-lg shadow-sm p-6 mt-8 max-w-2xl mx-auto text-center text-red-500">
+      <div className="rounded-lg shadow-sm p-6 mt-8 max-w-2xl mx-auto text-center text-red-500">
         {error}
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8">
+    <div className="min-h-screen py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h2 className="text-lg font-semibold">Manage Addresses</h2>

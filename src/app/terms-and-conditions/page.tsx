@@ -3,41 +3,41 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions | NxtDoor Retail",
+  title: "Terms & Conditions | Only Truth No Secrets",
   description:
-    "Read NxtDoor Retail's Terms & Conditions. Understand acceptable use, orders & payments, intellectual property, limitations, and contact details.",
+    "Read Only Truth No Secrets's Terms & Conditions. Understand acceptable use, orders & payments, intellectual property, limitations, and contact details.",
   keywords: [
     "terms and conditions",
     "terms of service",
     "acceptable use",
     "orders and payments",
-    "NxtDoor Retail",
+    "Only Truth No Secrets",
   ],
   alternates: {
-    canonical: "https://www.nxtdoorretail.com/terms-and-conditions",
+    canonical: "https://www.onlytruthnosecrets.com/terms-and-conditions",
   },
   openGraph: {
-    title: "Terms & Conditions | NxtDoor Retail",
+    title: "Terms & Conditions | Only Truth No Secrets",
     description:
-      "Read NxtDoor Retail's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
-    url: "https://www.nxtdoorretail.com/terms-and-conditions",
-    siteName: "NxtDoor Retail",
+      "Read Only Truth No Secrets's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
+    url: "https://www.onlytruthnosecrets.com/terms-and-conditions",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Terms & Conditions",
+        alt: "Only Truth No Secrets - Terms & Conditions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Terms & Conditions | NxtDoor Retail",
+    title: "Terms & Conditions | Only Truth No Secrets",
     description:
-      "Read NxtDoor Retail's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+      "Read Only Truth No Secrets's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -61,13 +61,13 @@ export default function TermsAndConditionsPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Terms & Conditions",
-        item: "https://www.nxtdoorretail.com/terms-and-conditions",
+        item: "https://www.onlytruthnosecrets.com/terms-and-conditions",
       },
     ],
   };
@@ -76,13 +76,13 @@ export default function TermsAndConditionsPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Terms & Conditions",
-    url: "https://www.nxtdoorretail.com/terms-and-conditions",
+    url: "https://www.onlytruthnosecrets.com/terms-and-conditions",
     description:
-      "Read NxtDoor Retail's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
+      "Read Only Truth No Secrets's Terms & Conditions, including acceptable use, orders & payments, and limitations.",
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Script
         id="terms-breadcrumb-ld"
         type="application/ld+json"
@@ -158,8 +158,8 @@ export default function TermsAndConditionsPage() {
           </h2>
           <p className="mb-6 text-gray-700">
             All content, trademarks, and data on this website are the property
-            of NxtDoor Retail or its licensors. You may not use, reproduce, or
-            distribute any content without permission.
+            of Only Truth No Secrets or its licensors. You may not use,
+            reproduce, or distribute any content without permission.
           </p>
 
           <h2 className="text-2xl font-bold text-[#00B7CD] mb-6">
@@ -186,10 +186,10 @@ export default function TermsAndConditionsPage() {
             If you have any questions about these Terms & Conditions, please
             contact us at{" "}
             <a
-              href="mailto:support@nxtdoorretail.com"
+              href="mailto:support@onlytruthnosecrets.com"
               className="text-[#00B7CD] underline"
             >
-              support@nxtdoorretail.com
+              support@onlytruthnosecrets.com
             </a>
             .
           </p>

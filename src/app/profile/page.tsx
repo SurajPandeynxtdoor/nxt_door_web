@@ -8,9 +8,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "My Profile | NxtDoor Retail",
+  title: "My Profile | Only Truth No Secrets",
   description: "View and manage your profile, orders, and addresses.",
-  alternates: { canonical: "https://www.nxtdoorretail.com/profile" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/profile" },
   robots: {
     index: false,
     follow: false,
@@ -27,19 +27,19 @@ export default function ProfilePage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Profile",
-        item: "https://www.nxtdoorretail.com/profile",
+        item: "https://www.onlytruthnosecrets.com/profile",
       },
     ],
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       <Script
         id="profile-breadcrumb-ld"
         type="application/ld+json"

@@ -120,3 +120,29 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    user-select: none;
+  }
+  .marquee-group {
+    display: inline-flex;
+    gap: 2rem;
+    will-change: transform;
+    animation: marquee 22s linear infinite;
+  }
+  .marquee:hover .marquee-group {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

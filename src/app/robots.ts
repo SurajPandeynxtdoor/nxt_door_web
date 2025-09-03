@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/", "/admin/", "/private/"],
     },
-    sitemap: "https://www.nxtdoorretail.com/sitemap.xml",
+    sitemap: "https://www.onlytruthnosecrets.com/sitemap.xml",
   };
 }

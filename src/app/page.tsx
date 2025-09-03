@@ -11,11 +11,11 @@ export const revalidate = 0;
 
 export const metadata: Metadata = {
   title:
-    "NxtDoor Retail | Buy Best FMCG Products Online - Clean, Honest, Wholesome Foods",
+    "Only Truth No Secrets | Buy Best FMCG Products Online - Clean, Honest, Wholesome Foods",
   description:
-    "Shop clean, honest, and wholesome foods at NxtDoor Retail. Discover plant-based proteins, organic snacks, natural sweeteners, makhana, cashews, almonds, and more. Fast delivery, best prices, quality products.",
+    "Shop clean, honest, and wholesome foods at Only Truth No Secrets. Discover plant-based proteins, organic snacks, natural sweeteners, makhana, cashews, almonds, and more. Fast delivery, best prices, quality products.",
   keywords: [
-    "nxtdoor retail",
+    "Only Truth No Secrets",
     "online grocery shopping",
     "FMCG products online",
     "healthy snacks online",
@@ -30,29 +30,30 @@ export const metadata: Metadata = {
     "honest food",
     "wholesome foods",
   ],
-  alternates: { canonical: "https://www.nxtdoorretail.com/" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/" },
   openGraph: {
-    title: "NxtDoor Retail | Buy Best FMCG Products Online",
+    title: "Only Truth No Secrets | Buy Best FMCG Products Online",
     description:
-      "Shop clean, honest, and wholesome foods at NxtDoor Retail. Discover plant-based proteins, organic snacks, natural sweeteners, and more.",
-    url: "https://www.nxtdoorretail.com/",
-    siteName: "NxtDoor Retail",
+      "Shop clean, honest, and wholesome foods at Only Truth No Secrets. Discover plant-based proteins, organic snacks, natural sweeteners, and more.",
+    url: "https://www.onlytruthnosecrets.com/",
+    siteName: "Only Truth No Secrets",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Clean, Honest, Wholesome Foods",
+        alt: "Only Truth No Secrets - Clean, Honest, Wholesome Foods",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NxtDoor Retail | Buy Best FMCG Products Online",
-    description: "Shop clean, honest, and wholesome foods at NxtDoor Retail.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+    title: "Only Truth No Secrets | Buy Best FMCG Products Online",
+    description:
+      "Shop clean, honest, and wholesome foods at Only Truth No Secrets.",
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -107,9 +108,9 @@ export default async function HomePage() {
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "NxtDoor Retail",
-    url: "https://www.nxtdoorretail.com",
-    logo: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+    name: "Only Truth No Secrets",
+    url: "https://www.onlytruthnosecrets.com",
+    logo: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
     description: "Clean, honest, and wholesome foods retailer",
     address: {
       "@type": "PostalAddress",
@@ -140,7 +141,7 @@ export default async function HomePage() {
           description: product.description,
           brand: {
             "@type": "Brand",
-            name: product._brand?.name || "NxtDoor Retail",
+            name: product._brand?.name || "Only Truth No Secrets",
           },
           image: product.images?.[0] || "",
           offers: {
@@ -157,7 +158,7 @@ export default async function HomePage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       <Script
         id="structured-data"
         type="application/ld+json"
@@ -179,12 +180,12 @@ export default async function HomePage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: "NxtDoor Retail",
-            url: "https://www.nxtdoorretail.com",
+            name: "Only Truth No Secrets",
+            url: "https://www.onlytruthnosecrets.com",
             potentialAction: {
               "@type": "SearchAction",
               target:
-                "https://www.nxtdoorretail.com/?search={search_term_string}",
+                "https://www.onlytruthnosecrets.com/?search={search_term_string}",
               "query-input": "required name=search_term_string",
             },
           }),
@@ -195,7 +196,46 @@ export default async function HomePage() {
       {productsData && (
         <ProductSection
           title="Our Clean & Natural Product Range"
-          description="At Only Truth No Secret, we bring you a thoughtfully curated range of natural, wholesome, and functional foods that combine traditional wisdom with modern wellness. From plant-based proteins like Sattu and Makhana, to flavored snacks, organic dry fruits, and chemical-free sweeteners, each product is made with clean ingredients, free from artificial additives, and rooted in purity."
+          description={
+            <>
+              Discover{" "}
+              <span className="text-emerald-700 font-semibold">
+                clean, honest, wholesome foods
+              </span>{" "}
+              — from
+              <span className="text-cyan-700 font-semibold">
+                {" "}
+                plant‑based proteins
+              </span>{" "}
+              and
+              <span className="text-amber-700 font-semibold">
+                {" "}
+                organic snacks
+              </span>{" "}
+              to
+              <span className="text-pink-700 font-semibold">
+                {" "}
+                natural sweeteners
+              </span>{" "}
+              and premium dry fruits.
+            </>
+          }
+          tags={[
+            "Makhana & Sattu",
+            "Cashews & Almonds",
+            "Desi Khand",
+            "No artificial additives",
+            "Fast delivery",
+            "Great prices",
+          ]}
+          bullets={[
+            "Thoughtfully curated, clean ingredients",
+            "Protein‑rich, gluten‑free options",
+            "Premium nuts & natural sweeteners",
+            "Crafted for taste and wellness",
+            "Transparent sourcing and quality",
+            "Trusted by conscious consumers",
+          ]}
           products={productsData.allProducts}
         />
       )}

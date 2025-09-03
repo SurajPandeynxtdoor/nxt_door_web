@@ -22,7 +22,7 @@ const PriceSummary = ({
   setIsLoginModalOpen,
 }: PriceSummaryProps) => {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+    <div className="rounded-lg shadow-sm p-6 sticky top-24">
       <h2 className="text-xl font-semibold mb-4 border-b pb-4">
         Price Summary
       </h2>

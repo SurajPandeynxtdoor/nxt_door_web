@@ -4,7 +4,7 @@ import { fetchCategories } from "@/lib/api/categories";
 import { fetchProducts } from "@/lib/api/products";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.nxtdoorretail.com";
+  const baseUrl = "https://www.onlytruthnosecrets.com";
   const now = new Date();
 
   const urls: MetadataRoute.Sitemap = [

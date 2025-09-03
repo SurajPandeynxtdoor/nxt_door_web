@@ -3,39 +3,39 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 
 export const metadata: Metadata = {
-  title: "Returns & Refund Policy | NxtDoor Retail",
+  title: "Returns & Refund Policy | Only Truth No Secrets",
   description:
-    "Read NxtDoor Retail's returns and refund policy. Learn return windows, non-returnable items, refunds timeline, and how to contact support.",
+    "Read Only Truth No Secrets's returns and refund policy. Learn return windows, non-returnable items, refunds timeline, and how to contact support.",
   keywords: [
     "returns policy",
     "refund policy",
     "return window",
     "replacement",
-    "NxtDoor Retail",
+    "Only Truth No Secrets",
   ],
-  alternates: { canonical: "https://www.nxtdoorretail.com/returns" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/returns" },
   openGraph: {
-    title: "Returns & Refund Policy | NxtDoor Retail",
+    title: "Returns & Refund Policy | Only Truth No Secrets",
     description:
       "Find details about returns, non-returnable items, damage claims, and refund timelines.",
-    url: "https://www.nxtdoorretail.com/returns",
-    siteName: "NxtDoor Retail",
+    url: "https://www.onlytruthnosecrets.com/returns",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Returns & Refund Policy",
+        alt: "Only Truth No Secrets - Returns & Refund Policy",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Returns & Refund Policy | NxtDoor Retail",
+    title: "Returns & Refund Policy | Only Truth No Secrets",
     description:
       "Find details about returns, non-returnable items, damage claims, and refund timelines.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -59,13 +59,13 @@ export default function ReturnsPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Returns & Refund Policy",
-        item: "https://www.nxtdoorretail.com/returns",
+        item: "https://www.onlytruthnosecrets.com/returns",
       },
     ],
   };
@@ -102,7 +102,7 @@ export default function ReturnsPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Script
         id="returns-breadcrumb-ld"
         type="application/ld+json"
@@ -177,10 +177,10 @@ export default function ReturnsPage() {
           <p className="text-gray-700">
             For any questions or to initiate a return, please contact us at{" "}
             <a
-              href="mailto:support@nxtdoorretail.com"
+              href="mailto:support@onlytruthnosecrets.com"
               className="text-[#00B7CD] underline"
             >
-              support@nxtdoorretail.com
+              support@onlytruthnosecrets.com
             </a>
             .
           </p>

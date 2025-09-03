@@ -7,39 +7,39 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Shopping Cart | NxtDoor Retail",
+  title: "Shopping Cart | Only Truth No Secrets",
   description:
-    "Review your selected clean and wholesome products from NxtDoor Retail. Secure checkout with fast delivery across India.",
+    "Review your selected clean and wholesome products from Only Truth No Secrets. Secure checkout with fast delivery across India.",
   keywords: [
     "shopping cart",
-    "nxtdoor retail cart",
+    "Only Truth No Secrets cart",
     "checkout",
     "buy online",
     "FMCG cart",
   ],
-  alternates: { canonical: "https://www.nxtdoorretail.com/cart" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/cart" },
   openGraph: {
-    title: "Shopping Cart | NxtDoor Retail",
+    title: "Shopping Cart | Only Truth No Secrets",
     description:
-      "Review your selected clean and wholesome products from NxtDoor Retail.",
-    url: "https://www.nxtdoorretail.com/cart",
-    siteName: "NxtDoor Retail",
+      "Review your selected clean and wholesome products from Only Truth No Secrets.",
+    url: "https://www.onlytruthnosecrets.com/cart",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Shopping Cart",
+        alt: "Only Truth No Secrets - Shopping Cart",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shopping Cart | NxtDoor Retail",
+    title: "Shopping Cart | Only Truth No Secrets",
     description:
-      "Review your selected clean and wholesome products from NxtDoor Retail.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+      "Review your selected clean and wholesome products from Only Truth No Secrets.",
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     // Best practice: prevent indexing of cart pages
@@ -64,13 +64,13 @@ export default function CartPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Cart",
-        item: "https://www.nxtdoorretail.com/cart",
+        item: "https://www.onlytruthnosecrets.com/cart",
       },
     ],
   };
@@ -79,13 +79,13 @@ export default function CartPage() {
     "@context": "https://schema.org",
     "@type": "WebPage",
     name: "Shopping Cart",
-    url: "https://www.nxtdoorretail.com/cart",
+    url: "https://www.onlytruthnosecrets.com/cart",
     description:
-      "Review your selected clean and wholesome products from NxtDoor Retail.",
+      "Review your selected clean and wholesome products from Only Truth No Secrets.",
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       <Script
         id="cart-breadcrumb-ld"
         type="application/ld+json"

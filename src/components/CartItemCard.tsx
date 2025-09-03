@@ -53,7 +53,7 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
   return (
     <div className="p-4 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
       <div className="flex items-center space-x-4">
-        <div className="w-20 h-20 relative border rounded-lg p-1 bg-white">
+        <div className="w-20 h-20 relative border rounded-lg p-1">
           <Image
             src={item.image || "/images/NXTDoor.jpeg"}
             alt={item.name}

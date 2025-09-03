@@ -16,6 +16,7 @@ interface CategoryProductSectionProps {
   categoryName?: string;
   totalCount?: number;
   categoryId?: string;
+  id?: string;
 }
 
 const CategoryProductSection = ({
@@ -26,6 +27,7 @@ const CategoryProductSection = ({
   categoryName,
   totalCount: initialTotalCount = 0,
   categoryId,
+  id,
 }: CategoryProductSectionProps) => {
   const [products, setProducts] = useState<Product[]>(initialProducts);
   const [currentPage, setCurrentPage] = useState(initialPage);
@@ -100,7 +102,7 @@ const CategoryProductSection = ({
 
   if (products.length === 0) {
     return (
-      <section className="py-12 lg:py-16 bg-gray-50">
+      <section className="py-12 lg:py-16 ">
         <div className="container mx-auto px-4">
           <div className="text-center py-16">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-full mb-6">
@@ -131,17 +133,16 @@ const CategoryProductSection = ({
   }
 
   return (
-    <section className="py-8 lg:py-12 bg-gray-50">
+    <section id={id} className="py-8 lg:py-12">
       <div className="container mx-auto px-4">
         {/* Products Grid */}
         <div className="relative">
-          <div className={`grid ${getGridClass()} ${getGapClass()}`}>
+          <div className={`grid ${getGridClass()} ${getGapClass()} 2xl:gap-8`}>
             {products.map((product) => (
               <ProductCard key={product._id} product={product} />
             ))}
           </div>
         </div>
-
         {/* Infinite Scroll Loading Indicator */}
         {showPagination && hasMore && (
           <div className="mt-12 flex justify-center">
@@ -159,7 +160,6 @@ const CategoryProductSection = ({
             </div>
           </div>
         )}
-
         {/* End of Products Indicator */}
         {showPagination && !hasMore && products.length > 0 && (
           <div className="mt-12 text-center">

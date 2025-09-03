@@ -23,7 +23,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "www.nxtdoorretail.com",
+        hostname: "www.onlytruthnosecrets.com",
         port: "",
         pathname: "/**",
       },

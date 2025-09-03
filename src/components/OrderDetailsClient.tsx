@@ -164,7 +164,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
 
   if (loading) {
     return (
-      <div className="bg-gray-50 min-h-screen py-8">
+      <div className="min-h-screen py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500" />
@@ -176,7 +176,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
 
   if (error || !order) {
     return (
-      <div className="bg-gray-50 min-h-screen py-8">
+      <div className="min-h-screen py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="bg-white rounded-lg shadow-sm p-6 text-center">
             <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
@@ -203,7 +203,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen py-4 sm:py-8">
+    <div className="min-h-screen py-4 sm:py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
           <Button
@@ -239,7 +239,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
 
         <div className="grid grid-cols-1 xl:grid-cols-3 gap-4 sm:gap-6">
           <div className="xl:col-span-2 space-y-4 sm:space-y-6">
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 sm:mb-6">
                 <h2 className="text-lg font-semibold text-gray-900">
                   Order Status
@@ -338,7 +338,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 sm:mb-6">
                 Order Items
               </h2>
@@ -400,7 +400,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
             </div>
 
             {order.trackingNumber && (
-              <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+              <div className="rounded-lg shadow-sm p-4 sm:p-6">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">
                   Tracking Information
                 </h2>
@@ -432,7 +432,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
           </div>
 
           <div className="space-y-4 sm:space-y-6">
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Order Summary
               </h2>
@@ -456,7 +456,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Payment Information
               </h2>
@@ -490,7 +490,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                 Shipping Address
@@ -519,7 +519,7 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
               </div>
             </div>
 
-            <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+            <div className="rounded-lg shadow-sm p-4 sm:p-6">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Need Help?
               </h2>

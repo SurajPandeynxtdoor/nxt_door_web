@@ -41,13 +41,13 @@ const CartPageClient = () => {
     : "Add/Select Address";
 
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <CheckoutStepper currentStep={0} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
           <main className="lg:col-span-2 space-y-6">
-            <div className="bg-white rounded-lg shadow-sm">
+            <div className="rounded-lg shadow-sm">
               <div className="flex justify-between items-center p-6 border-b">
                 <div className="flex items-center space-x-3">
                   <svg

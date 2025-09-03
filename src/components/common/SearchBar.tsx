@@ -23,7 +23,7 @@ const SearchBar = () => {
             onBlur={() => setIsFocused(false)}
             className={cn(
               "w-full h-10 pl-10 pr-10 rounded-md transition-all duration-200",
-              "bg-gray-50 focus:bg-white",
+              " focus:bg-white",
               isFocused
                 ? "ring-2 ring-primary/20 shadow-lg border-transparent"
                 : "border-muted-foreground/20 hover:border-primary/30 focus:ring-1 focus:ring-primary/50"

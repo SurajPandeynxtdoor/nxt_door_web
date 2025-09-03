@@ -29,28 +29,28 @@ export async function generateMetadata({
 
     if (!category) {
       return {
-        title: "Category Not Found | NxtDoor Retail",
+        title: "Category Not Found | Only Truth No Secrets",
         description: "The requested category could not be found.",
       };
     }
 
     return {
-      title: `${category.name} - Natural & Organic Products | NxtDoor Retail`,
+      title: `${category.name} - Natural & Organic Products | Only Truth No Secrets`,
       description:
         category.description ||
-        `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from NxtDoor Retail.`,
-      keywords: `${category.name}, natural products, organic, wholesome foods, NxtDoor Retail`,
+        `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from Only Truth No Secrets.`,
+      keywords: `${category.name}, natural products, organic, wholesome foods, Only Truth No Secrets`,
       alternates: {
-        canonical: `https://www.nxtdoorretail.com/category/${category.name
+        canonical: `https://www.onlytruthnosecrets.com/category/${category.name
           .toLowerCase()
           .replace(/\s+/g, "-")}/${category._id}`,
       },
       openGraph: {
-        title: `${category.name} - Natural & Organic Products | NxtDoor Retail`,
+        title: `${category.name} - Natural & Organic Products | Only Truth No Secrets`,
         description:
           category.description ||
-          `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from NxtDoor Retail.`,
-        url: `https://www.nxtdoorretail.com/category/${category.name
+          `Explore our collection of ${category.name.toLowerCase()} - natural, organic, and wholesome products from Only Truth No Secrets.`,
+        url: `https://www.onlytruthnosecrets.com/category/${category.name
           .toLowerCase()
           .replace(/\s+/g, "-")}/${category._id}`,
         type: "website",
@@ -59,7 +59,7 @@ export async function generateMetadata({
   } catch (error) {
     console.error("Error loading category metadata:", error);
     return {
-      title: "Category | NxtDoor Retail",
+      title: "Category | Only Truth No Secrets",
       description: "Explore our natural and organic products.",
     };
   }
@@ -68,7 +68,7 @@ export async function generateMetadata({
 export async function generateStaticParams() {
   try {
     const api = process.env.NEXT_PUBLIC_API_URL;
-    if (!api) return []; // skip pregen if API base missing
+    if (!api) return [];
     const categories = await fetchCategories();
     return categories.map((category) => ({
       slug: category.name.toLowerCase().replace(/\s+/g, "-"),
@@ -130,13 +130,13 @@ export default async function CategoryPage({
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.nxtdoorretail.com/",
+          item: "https://www.onlytruthnosecrets.com/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: currentCategory.name,
-          item: `https://www.nxtdoorretail.com/category/${currentCategory.name
+          item: `https://www.onlytruthnosecrets.com/category/${currentCategory.name
             .toLowerCase()
             .replace(/\s+/g, "-")}/${id}`,
         },
@@ -144,7 +144,7 @@ export default async function CategoryPage({
     };
 
     return (
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -161,13 +161,33 @@ export default async function CategoryPage({
 
         <CategoryIntro
           description={
-            currentCategory.description ||
-            `Discover premium ${currentCategory.name.toLowerCase()} — crafted for quality, taste, and wellness.`
+            <>
+              <p>
+                At Only Truth No Secrets, our {currentCategory.name} range is
+                curated with a simple promise: clean, honest ingredients that
+                taste great and make you feel good. Every item is sourced from
+                trusted partners, handled with care, and offered at fair,
+                transparent prices—so you can bring home quality without
+                compromise.
+              </p>
+              <p className="mt-3">
+                We prioritise natural goodness over shortcuts. That means
+                thoughtfully selected ingredients, minimal processing, and
+                products that avoid unnecessary additives like artificial
+                colours, flavours, or preservatives. Whether you’re stocking a
+                healthy pantry, planning quick snacks, or exploring functional
+                foods for everyday wellness, our{" "}
+                {currentCategory.name.toLowerCase()} collection is designed to
+                fit modern lifestyles without losing the authenticity you
+                expect.
+              </p>
+            </>
           }
         />
 
         {/* Products Section */}
         <CategoryProductSection
+          id="products"
           products={categoryData.categoryProducts}
           showPagination={true}
           currentPage={pageNum}

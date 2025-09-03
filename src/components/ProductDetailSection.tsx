@@ -111,7 +111,7 @@ export default function ProductDetailSection({
   }
 
   return (
-    <section className="py-3 sm:py-6 lg:py-8 bg-white">
+    <section className="py-3 sm:py-6 lg:py-8">
       <div className="container mx-auto px-3 sm:px-4 lg:px-6">
         {/* Breadcrumb */}
         <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-8">
@@ -142,7 +142,7 @@ export default function ProductDetailSection({
           {/* Product Images */}
           <div className="space-y-4">
             {/* Main Image */}
-            <div className="relative aspect-square bg-gray-100 rounded-xl overflow-hidden">
+            <div className="relative aspect-square rounded-xl overflow-hidden">
               {images.length > 0 && images[selectedImage] ? (
                 <Image
                   src={images[selectedImage]}
@@ -348,7 +348,7 @@ export default function ProductDetailSection({
             onValueChange={setActiveTab}
             className="w-full"
           >
-            <TabsList className="bg-white border rounded-lg">
+            <TabsList className="border rounded-lg">
               <TabsTrigger value="description">Description</TabsTrigger>
               <TabsTrigger value="reviews">Reviews</TabsTrigger>
             </TabsList>

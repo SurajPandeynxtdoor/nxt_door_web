@@ -144,7 +144,7 @@ const MyOrdersClient = () => {
 
   if (loading) {
     return (
-      <div className="bg-gray-50 min-h-screen py-8">
+      <div className="min-h-screen py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="flex justify-center items-center h-64">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-cyan-500" />
@@ -156,7 +156,7 @@ const MyOrdersClient = () => {
 
   if (error) {
     return (
-      <div className="bg-gray-50 min-h-screen py-8">
+      <div className="min-h-screen py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <div className="bg-white rounded-lg shadow-sm p-6 text-center">
             <p className="text-red-500 mb-4">{error}</p>
@@ -170,7 +170,7 @@ const MyOrdersClient = () => {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen py-8">
+    <div className="min-h-screen py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
@@ -189,7 +189,7 @@ const MyOrdersClient = () => {
           </Button>
         </div>
 
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div className="rounded-lg shadow-sm p-4 mb-6">
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
@@ -225,7 +225,7 @@ const MyOrdersClient = () => {
             filteredOrders.map((order) => (
               <div
                 key={order._id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
+                className="rounded-lg shadow-sm border border-gray-200 overflow-hidden"
               >
                 <div className="p-4 border-b border-gray-100 bg-gray-50">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
@@ -391,7 +391,7 @@ const MyOrdersClient = () => {
               </div>
             ))
           ) : (
-            <div className="bg-white rounded-lg shadow-sm p-8 text-center">
+            <div className="rounded-lg shadow-sm p-8 text-center">
               <Package className="w-16 h-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-lg font-medium text-gray-900 mb-2">
                 {searchQuery || statusFilter !== "all"

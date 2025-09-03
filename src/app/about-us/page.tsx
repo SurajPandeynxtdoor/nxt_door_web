@@ -5,13 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About Us | NxtDoor Retail",
+  title: "About Us | Only Truth No Secrets",
   description:
-    "Learn about Only Truth No Secret by NxtDoor Retail – our story, values, team, and commitment to clean, honest, and wholesome foods.",
+    "Learn about Only Truth No Secret by Only Truth No Secrets – our story, values, team, and commitment to clean, honest, and wholesome foods.",
   keywords: [
     "about",
     "Only Truth No Secret",
-    "NxtDoor Retail",
+    "Only Truth No Secrets",
     "clean foods",
     "wholesome",
     "natural ingredients",
@@ -19,29 +19,29 @@ export const metadata: Metadata = {
     "team",
     "sustainability",
   ],
-  alternates: { canonical: "https://www.nxtdoorretail.com/about-us" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/about-us" },
   openGraph: {
-    title: "About Us | NxtDoor Retail",
+    title: "About Us | Only Truth No Secrets",
     description:
       "Our story, values, and team behind Only Truth No Secret – clean, honest, and wholesome foods.",
-    url: "https://www.nxtdoorretail.com/about-us",
-    siteName: "NxtDoor Retail",
+    url: "https://www.onlytruthnosecrets.com/about-us",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - About Us",
+        alt: "Only Truth No Secrets - About Us",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Us | NxtDoor Retail",
+    title: "About Us | Only Truth No Secrets",
     description:
       "Our story, values, and team behind Only Truth No Secret – clean, honest, and wholesome foods.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -65,13 +65,13 @@ export default function AboutUsPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "About Us",
-        item: "https://www.nxtdoorretail.com/about-us",
+        item: "https://www.onlytruthnosecrets.com/about-us",
       },
     ],
   };
@@ -80,22 +80,22 @@ export default function AboutUsPage() {
     "@context": "https://schema.org",
     "@type": "AboutPage",
     name: "About Only Truth No Secret",
-    url: "https://www.nxtdoorretail.com/about-us",
+    url: "https://www.onlytruthnosecrets.com/about-us",
     description:
-      "Only Truth No Secret by NxtDoor Retail – clean, honest, and wholesome foods for every home.",
+      "Only Truth No Secret by Only Truth No Secrets – clean, honest, and wholesome foods for every home.",
     publisher: {
       "@type": "Organization",
-      name: "NxtDoor Retail",
-      url: "https://www.nxtdoorretail.com",
+      name: "Only Truth No Secrets",
+      url: "https://www.onlytruthnosecrets.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
       },
     },
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Script
         id="about-breadcrumb-ld"
         type="application/ld+json"

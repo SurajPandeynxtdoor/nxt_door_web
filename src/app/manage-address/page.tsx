@@ -8,29 +8,31 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Manage Addresses | NxtDoor Retail",
+  title: "Manage Addresses | Only Truth No Secrets",
   description: "Add, edit, and remove your delivery addresses.",
-  alternates: { canonical: "https://www.nxtdoorretail.com/manage-address" },
+  alternates: {
+    canonical: "https://www.onlytruthnosecrets.com/manage-address",
+  },
   openGraph: {
-    title: "Manage Addresses | NxtDoor Retail",
+    title: "Manage Addresses | Only Truth No Secrets",
     description: "Add, edit, and remove your delivery addresses.",
-    url: "https://www.nxtdoorretail.com/manage-address",
-    siteName: "NxtDoor Retail",
+    url: "https://www.onlytruthnosecrets.com/manage-address",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Manage Addresses",
+        alt: "Only Truth No Secrets - Manage Addresses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Manage Addresses | NxtDoor Retail",
+    title: "Manage Addresses | Only Truth No Secrets",
     description: "Add, edit, and remove your delivery addresses.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: false,
@@ -48,19 +50,19 @@ export default function ManageAddressPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Manage Addresses",
-        item: "https://www.nxtdoorretail.com/manage-address",
+        item: "https://www.onlytruthnosecrets.com/manage-address",
       },
     ],
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       <Script
         id="manage-address-breadcrumb-ld"
         type="application/ld+json"

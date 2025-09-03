@@ -7,9 +7,9 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata: Metadata = {
-  title: "Order Details | NxtDoor Retail",
+  title: "Order Details | Only Truth No Secrets",
   description: "View detailed information about your order.",
-  alternates: { canonical: "https://www.nxtdoorretail.com/orders" },
+  alternates: { canonical: "https://www.onlytruthnosecrets.com/orders" },
   robots: {
     index: false,
     follow: false,
@@ -31,25 +31,25 @@ export default async function OrderDetailsPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "My Orders",
-        item: "https://www.nxtdoorretail.com/orders",
+        item: "https://www.onlytruthnosecrets.com/orders",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Order Details",
-        item: `https://www.nxtdoorretail.com/orders/${id}`,
+        item: `https://www.onlytruthnosecrets.com/orders/${id}`,
       },
     ],
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen">
       <Script
         id="order-details-breadcrumb-ld"
         type="application/ld+json"

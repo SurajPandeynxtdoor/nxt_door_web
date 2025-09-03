@@ -50,7 +50,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/product/${product._id}`} className="block">
-      <div className="group relative bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col min-h-0 flex-1 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer">
+      <div className="group relative rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col min-h-0 flex-1 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer will-change-transform hover:-translate-y-0.5">
         {product.badge && (
           <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-20">
             <span className="bg-white p-1 rounded-full shadow-lg block">
@@ -66,7 +66,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
 
         {discountPercentage > 0 && (
-          <div className="absolute top-8 right-2 sm:top-12 sm:right-3 z-10 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-[10px] sm:text-xs font-bold px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-full shadow-lg">
+          <div className="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[10px] sm:text-xs font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md">
             {discountPercentage}% OFF
           </div>
         )}
@@ -78,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               alt={product.name}
               fill
               sizes="(max-width: 768px) 100vw, 25vw"
-              className="object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+              className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
               priority={false}
             />
           ) : (
@@ -107,7 +107,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="flex flex-col flex-1 px-3 pt-2 pb-2 gap-1 sm:px-4 sm:pt-4 sm:pb-4 sm:gap-2">
           <div className="flex items-center justify-between">
-            <p className="text-[11px] sm:text-xs font-semibold text-rose-600 bg-rose-50 px-1.5 py-0.5 rounded-md">
+            <p className="text-[11px] sm:text-xs font-semibold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded-md">
               {product._brand?.name}
             </p>
             <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
@@ -138,9 +138,9 @@ export default function ProductCard({ product }: ProductCardProps) {
               : [
                   "100% Organic & Natural",
                   "High in Protein & Low in Fat",
-                  "Gluten-Free & Cholesterol-Free",
+                  "Gluten‑Free & Cholesterol‑Free",
                 ]
-            ).join(" | ")}
+            ).join(" • ")}
           </div>
 
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-y-1 gap-x-2 min-w-0">
@@ -170,7 +170,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   }
                 }}
               >
-                <SelectTrigger className="h-7 sm:h-9 text-[11px] sm:text-sm bg-white border-2 border-gray-200 hover:border-rose-300 focus:border-rose-500 transition-colors rounded-lg shadow-sm w-full min-w-0 truncate overflow-hidden">
+                <SelectTrigger className="h-7 sm:h-9 text-[11px] sm:text-sm bg-white border-2 border-gray-200 hover:border-cyan-300 focus:border-cyan-500 transition-colors rounded-lg shadow-sm w-full min-w-0 truncate overflow-hidden">
                   {selectedCaseSize ? (
                     <span className="truncate block">{`${selectedCaseSize.size} psc`}</span>
                   ) : (
@@ -182,7 +182,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     <SelectItem
                       key={caseSize.size}
                       value={caseSize.size.toString()}
-                      className="text-[11px] sm:text-sm hover:bg-rose-50 focus:bg-rose-50 cursor-pointer"
+                      className="text-[11px] sm:text-sm hover:bg-cyan-50 focus:bg-cyan-50 cursor-pointer"
                     >
                       <div className="flex items-center justify-between w-full">
                         <span>{caseSize.size} psc</span>
@@ -233,6 +233,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                       );
                     }
                   }}
+                  aria-label="Decrease quantity"
                 >
                   -
                 </Button>
@@ -259,13 +260,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                       toast.error("Max stock reached");
                     }
                   }}
+                  aria-label="Increase quantity"
                 >
                   +
                 </Button>
               </div>
             ) : (
               <Button
-                className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#0099AD] hover:to-[#008799] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0"
+                className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#00A6B9] hover:to-[#008EA1] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-xl shadow-md hover:shadow-lg"
                 disabled={product.stock === 0 || isOutOfStock}
                 onClick={(e) => {
                   e.preventDefault();
@@ -276,6 +278,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     description: `${product.name} • ${selectedCaseSize.size}`,
                   });
                 }}
+                aria-label="Add to cart"
               >
                 {product.stock > 0 && !isOutOfStock
                   ? "ADD TO CART"

@@ -2,10 +2,12 @@ import CartButton from "@/components/common/CartButton";
 import SearchBar from "@/components/common/SearchBar";
 import UserProfile from "@/components/common/UserProfile";
 import Image from "next/image";
+import AnnouncementBar from "@/components/common/AnnouncementBar";
 
 const Header = () => {
   return (
-    <div className="w-full border-b bg-background sticky top-0 z-50">
+    <div className="w-full border-b bg-background bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50  sticky top-0 z-50">
+      <AnnouncementBar />
       <div className="container mx-auto px-4">
         <div className="flex h-14 sm:h-16 items-center justify-between">
           <div className="relative flex items-center">

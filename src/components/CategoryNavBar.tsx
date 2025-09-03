@@ -61,7 +61,7 @@ const CategoryNavBar = ({ categories }: CategoryNavBarProps) => {
   };
 
   return (
-    <div className="w-full sticky top-0 z-40 bg-white border-b border-gray-200 shadow-sm">
+    <div className="w-full sticky top-0 z-40 border-b border-gray-200 shadow-sm">
       <div className="container mx-auto relative">
         {showLeftScroll && (
           <button

@@ -21,7 +21,7 @@ export async function generateMetadata({
 
     if (!productData || productData.error || !productData.product) {
       return {
-        title: "Product Not Found | NxtDoor Retail",
+        title: "Product Not Found | Only Truth No Secrets",
         description: "The requested product could not be found.",
       };
     }
@@ -31,14 +31,14 @@ export async function generateMetadata({
       typeof product._category === "object" && product._category?.name
         ? product._category.name
         : "Products";
-    const brandName = product._brand?.name || "NxtDoor Retail";
+    const brandName = product._brand?.name || "Only Truth No Secrets";
     const image = product.images?.[0] || "/images/NXTDoor.jpeg";
 
     return {
-      title: `${product.name} - ${brandName} | ${categoryName} | NxtDoor Retail`,
+      title: `${product.name} - ${brandName} | ${categoryName} | Only Truth No Secrets`,
       description:
         product.description ||
-        `Buy ${product.name} from ${brandName} at NxtDoor Retail. ${categoryName} - Clean, honest, and wholesome foods.
+        `Buy ${product.name} from ${brandName} at Only Truth No Secrets. ${categoryName} - Clean, honest, and wholesome foods.
         it is good and healthy for health`,
       keywords: [
         product.name.toLowerCase(),
@@ -47,22 +47,22 @@ export async function generateMetadata({
         "natural products",
         "organic food",
         "wholesome foods",
-        "NxtDoor Retail",
+        "Only Truth No Secrets",
         "online grocery",
         "clean food",
       ].join(", "),
       openGraph: {
-        title: `${product.name} - ${brandName} | NxtDoor Retail`,
+        title: `${product.name} - ${brandName} | Only Truth No Secrets`,
         description:
           product.description ||
-          `Buy ${product.name} from ${brandName} at NxtDoor Retail. Clean, honest, and wholesome foods.`,
+          `Buy ${product.name} from ${brandName} at Only Truth No Secrets. Clean, honest, and wholesome foods.`,
         type: "website",
-        url: `https://www.nxtdoorretail.com/product/${id}`,
+        url: `https://www.onlytruthnosecrets.com/product/${id}`,
         images: [
           {
             url: image.startsWith("http")
               ? image
-              : `https://www.nxtdoorretail.com${image}`,
+              : `https://www.onlytruthnosecrets.com${image}`,
             width: 800,
             height: 600,
             alt: product.name,
@@ -71,24 +71,24 @@ export async function generateMetadata({
       },
       twitter: {
         card: "summary_large_image",
-        title: `${product.name} - ${brandName} | NxtDoor Retail`,
+        title: `${product.name} - ${brandName} | Only Truth No Secrets`,
         description:
           product.description ||
-          `Buy ${product.name} from ${brandName} at NxtDoor Retail.`,
+          `Buy ${product.name} from ${brandName} at Only Truth No Secrets.`,
         images: [
           image.startsWith("http")
             ? image
-            : `https://www.nxtdoorretail.com${image}`,
+            : `https://www.onlytruthnosecrets.com${image}`,
         ],
       },
       alternates: {
-        canonical: `https://www.nxtdoorretail.com/product/${id}`,
+        canonical: `https://www.onlytruthnosecrets.com/product/${id}`,
       },
     };
   } catch (error) {
     console.error("Error loading product metadata:", error);
     return {
-      title: "Product | NxtDoor Retail",
+      title: "Product | Only Truth No Secrets",
       description: "Explore our natural and organic products.",
     };
   }
@@ -117,17 +117,19 @@ export default async function ProductPage({ params }: ProductPageProps) {
       description: product.description,
       brand: {
         "@type": "Brand",
-        name: product._brand?.name || "NxtDoor Retail",
+        name: product._brand?.name || "Only Truth No Secrets",
         logo:
           product._brand?.logo ||
-          "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+          "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
       },
       category: categoryName,
       image:
         product.images
           ?.filter((img) => img)
           .map((img) =>
-            img.startsWith("http") ? img : `https://www.nxtdoorretail.com${img}`
+            img.startsWith("http")
+              ? img
+              : `https://www.onlytruthnosecrets.com${img}`
           ) || [],
       offers: {
         "@type": "Offer",
@@ -139,8 +141,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             : "https://schema.org/OutOfStock",
         seller: {
           "@type": "Organization",
-          name: "NxtDoor Retail",
-          url: "https://www.nxtdoorretail.com",
+          name: "Only Truth No Secrets",
+          url: "https://www.onlytruthnosecrets.com",
         },
       },
       aggregateRating: {
@@ -158,25 +160,25 @@ export default async function ProductPage({ params }: ProductPageProps) {
           "@type": "ListItem",
           position: 1,
           name: "Home",
-          item: "https://www.nxtdoorretail.com/",
+          item: "https://www.onlytruthnosecrets.com/",
         },
         {
           "@type": "ListItem",
           position: 2,
           name: "Products",
-          item: "https://www.nxtdoorretail.com/",
+          item: "https://www.onlytruthnosecrets.com/",
         },
         {
           "@type": "ListItem",
           position: 3,
           name: product.name,
-          item: `https://www.nxtdoorretail.com/product/${id}`,
+          item: `https://www.onlytruthnosecrets.com/product/${id}`,
         },
       ],
     };
 
     return (
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen">
         <Script
           id="product-structured-data"
           type="application/ld+json"
@@ -198,12 +200,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "NxtDoor Retail",
-              url: "https://www.nxtdoorretail.com",
+              name: "Only Truth No Secrets",
+              url: "https://www.onlytruthnosecrets.com",
               potentialAction: {
                 "@type": "SearchAction",
                 target:
-                  "https://www.nxtdoorretail.com/?search={search_term_string}",
+                  "https://www.onlytruthnosecrets.com/?search={search_term_string}",
                 "query-input": "required name=search_term_string",
               },
             }),

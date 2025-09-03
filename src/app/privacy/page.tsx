@@ -3,42 +3,42 @@ import Script from "next/script";
 import Footer from "@/components/common/Footer";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | NxtDoor Retail",
+  title: "Privacy Policy | Only Truth No Secrets",
   description:
-    "Learn how NxtDoor Retail collects, uses, and protects your personal information. Read our privacy practices, your rights, and how to contact us.",
+    "Learn how Only Truth No Secrets collects, uses, and protects your personal information. Read our privacy practices, your rights, and how to contact us.",
   keywords: [
     "privacy policy",
     "data protection",
     "personal information",
     "cookies",
-    "NxtDoor Retail",
+    "Only Truth No Secrets",
     "user rights",
   ],
   alternates: {
-    canonical: "https://www.nxtdoorretail.com/privacy",
+    canonical: "https://www.onlytruthnosecrets.com/privacy",
   },
   openGraph: {
-    title: "Privacy Policy | NxtDoor Retail",
+    title: "Privacy Policy | Only Truth No Secrets",
     description:
-      "How NxtDoor Retail collects, uses, and protects your data. Understand your privacy rights and our practices.",
-    url: "https://www.nxtdoorretail.com/privacy",
-    siteName: "NxtDoor Retail",
+      "How Only Truth No Secrets collects, uses, and protects your data. Understand your privacy rights and our practices.",
+    url: "https://www.onlytruthnosecrets.com/privacy",
+    siteName: "Only Truth No Secrets",
     type: "website",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail - Privacy Policy",
+        alt: "Only Truth No Secrets - Privacy Policy",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Privacy Policy | NxtDoor Retail",
+    title: "Privacy Policy | Only Truth No Secrets",
     description:
-      "How NxtDoor Retail collects, uses, and protects your data. Understand your privacy rights and our practices.",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+      "How Only Truth No Secrets collects, uses, and protects your data. Understand your privacy rights and our practices.",
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   robots: {
     index: true,
@@ -59,15 +59,15 @@ export default function PrivacyPage() {
     "@type": "PrivacyPolicy",
     name: "Privacy Policy",
     description:
-      "Learn how NxtDoor Retail collects, uses, and protects your personal information.",
-    url: "https://www.nxtdoorretail.com/privacy",
+      "Learn how Only Truth No Secrets collects, uses, and protects your personal information.",
+    url: "https://www.onlytruthnosecrets.com/privacy",
     publisher: {
       "@type": "Organization",
-      name: "NxtDoor Retail",
-      url: "https://www.nxtdoorretail.com",
+      name: "Only Truth No Secrets",
+      url: "https://www.onlytruthnosecrets.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
       },
     },
   };
@@ -80,19 +80,19 @@ export default function PrivacyPage() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://www.nxtdoorretail.com/",
+        item: "https://www.onlytruthnosecrets.com/",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Privacy Policy",
-        item: "https://www.nxtdoorretail.com/privacy",
+        item: "https://www.onlytruthnosecrets.com/privacy",
       },
     ],
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col">
+    <main className="min-h-screen flex flex-col">
       <Script
         id="privacy-structured-data"
         type="application/ld+json"
@@ -185,10 +185,10 @@ export default function PrivacyPage() {
             If you have any questions about this Privacy Policy, please contact
             us at{" "}
             <a
-              href="mailto:support@nxtdoorretail.com"
+              href="mailto:support@onlytruthnosecrets.com"
               className="text-[#00B7CD] underline"
             >
-              support@nxtdoorretail.com
+              support@onlytruthnosecrets.com
             </a>
             .
           </p>

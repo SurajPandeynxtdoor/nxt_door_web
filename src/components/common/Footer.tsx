@@ -201,7 +201,7 @@ export default async function Footer() {
           <div className="mt-16 pt-8 border-t border-slate-800">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <p className="text-sm text-center md:text-left">
-                © {new Date().getFullYear()} NxtDoor Retail. All rights
+                © {new Date().getFullYear()} Only Truth No Secrets. All rights
                 reserved.
               </p>
               <div className="flex items-center gap-5">

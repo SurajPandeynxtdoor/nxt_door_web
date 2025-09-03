@@ -5,11 +5,16 @@ import { ReduxProvider } from "@/providers/ReduxProviders";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import Header from "@/components/common/Header";
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+};
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.nxtdoorretail.com"),
-  title: "NxtDoor Retail",
+  metadataBase: new URL("https://www.onlytruthnosecrets.com"),
+  title: "Only Truth No Secrets",
   description: "Your trusted FMCG retail partner",
   keywords: [
     // Brand and general terms
@@ -115,30 +120,30 @@ export const metadata: Metadata = {
       },
     ],
   },
-  authors: [{ name: "NxtDoor Retail" }],
-  creator: "NxtDoor Retail",
-  publisher: "NxtDoor Retail",
+  authors: [{ name: "Only Truth No Secrets" }],
+  creator: "Only Truth No Secrets",
+  publisher: "Only Truth No Secrets",
   openGraph: {
-    title: "NxtDoor Retail",
+    title: "Only Truth No Secrets",
     description: "Your trusted FMCG retail partner",
-    url: "https://www.nxtdoorretail.com/",
-    siteName: "NxtDoor Retail",
+    url: "https://www.onlytruthnosecrets.com/",
+    siteName: "Only Truth No Secrets",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://www.nxtdoorretail.com/images/NXTDoor.jpeg",
+        url: "https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg",
         width: 1200,
         height: 630,
-        alt: "NxtDoor Retail",
+        alt: "Only Truth No Secrets",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NxtDoor Retail",
+    title: "Only Truth No Secrets",
     description: "Your trusted FMCG retail partner",
-    images: ["https://www.nxtdoorretail.com/images/NXTDoor.jpeg"],
+    images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
   viewport: {
     width: "device-width",
@@ -168,7 +173,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} min-h-screen bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50`}
+      >
         <ReduxProvider>
           <AuthProvider>
             <Header />
