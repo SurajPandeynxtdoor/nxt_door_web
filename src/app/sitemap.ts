@@ -55,7 +55,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ),
     ]);
 
-    // Categories: /category/[slug]/[id]
     for (const c of categories || []) {
       const slug = (c.name || "").toLowerCase().replace(/\s+/g, "-");
       if (c._id && slug) {
@@ -68,7 +67,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
     }
 
-    // Products: /product/[id]
     for (const p of products?.allProducts || []) {
       if (p?._id) {
         urls.push({
