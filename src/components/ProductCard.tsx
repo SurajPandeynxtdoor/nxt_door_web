@@ -1,7 +1,7 @@
 "use client";
 
 import type { Product } from "@/types/catalog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
@@ -28,27 +28,21 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useAppDispatch();
 
-  // 🔹 Get cart item for this product
-  const cartItem = useAppSelector((s) =>
-    s.cart.items.find((it) => it.productId === product._id)
-  );
-
-  // 🔹 SELECTED CASE SIZE (sync with cart first)
+  // 🔹 SELECTED CASE SIZE (default or first)
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     product.caseSizes?.find((s) => s.isDefault) || product.caseSizes?.[0]
   );
 
-  // 🔹 Keep selectedCaseSize synced with cart on reload
-  useEffect(() => {
-    if (cartItem?.caseSize) {
-      const fullCaseSize = product.caseSizes?.find(
-        (s) => s.size === cartItem.caseSize.size
-      );
-      if (fullCaseSize) setSelectedCaseSize(fullCaseSize);
-    }
-  }, [cartItem, product.caseSizes]);
-
   const isOutOfStock = product.stock === 0;
+
+  // 🔹 Get cart item for this product + selected case size
+  const cartItem = useAppSelector((s) =>
+    s.cart.items.find(
+      (it) =>
+        it.productId === product._id &&
+        it.caseSize.size === selectedCaseSize?.size
+    )
+  );
 
   // 🔹 Discount calculation
   const discountPercentage =
@@ -125,22 +119,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             <p className="text-[11px] sm:text-xs font-semibold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded-md">
               {product._brand?.name}
             </p>
-            <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
-              <svg
-                className="w-3 h-3 mr-1 text-gray-500"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                />
-              </svg>
-              {product.weight || "250g"}
-            </div>
           </div>
 
           <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 line-clamp-2 min-h-[2.2em] leading-tight group-hover:text-gray-700 transition-colors">
@@ -286,7 +264,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   e.stopPropagation();
                   if (!selectedCaseSize) return;
 
-                  // 🔹 Ensure full CaseSize object is passed
+                  // Ensure full CaseSize object is passed
                   const fullCaseSize = product.caseSizes?.find(
                     (s) => s.size === selectedCaseSize.size
                   );
