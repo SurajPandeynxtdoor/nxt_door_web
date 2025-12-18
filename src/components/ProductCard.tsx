@@ -110,7 +110,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <p className="text-[11px] sm:text-xs font-semibold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded-md">
               {product._brand?.name}
             </p>
-            <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
+            {/* <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
               <svg
                 className="w-3 h-3 mr-1 text-gray-500"
                 fill="none"
@@ -125,7 +125,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
               </svg>
               {product.weight || "250g"}
-            </div>
+            </div> */}
           </div>
 
           <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 line-clamp-2 min-h-[2.2em] leading-tight group-hover:text-gray-700 transition-colors">
