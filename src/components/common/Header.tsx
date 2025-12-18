@@ -27,6 +27,7 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-4">
             <CartButton />
+            
             <UserProfile />
           </div>
         </div>
