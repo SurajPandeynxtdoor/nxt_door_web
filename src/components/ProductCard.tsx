@@ -28,30 +28,31 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useAppDispatch();
 
-  /** 🔹 CART ITEM (if already added) */
+  // 🔹 Get cart item for this product
   const cartItem = useAppSelector((s) =>
     s.cart.items.find((it) => it.productId === product._id)
   );
 
-  /** 🔹 SELECTED CASE SIZE (SYNC WITH CART) */
+  // 🔹 SELECTED CASE SIZE (sync with cart first)
   const [selectedCaseSize, setSelectedCaseSize] = useState(
-    cartItem?.caseSize ||
-      product.caseSizes?.find((s) => s.isDefault) ||
-      product.caseSizes?.[0]
+    product.caseSizes?.find((s) => s.isDefault) || product.caseSizes?.[0]
   );
 
-  /** 🔹 KEEP CASE SIZE SYNC AFTER RELOAD */
+  // 🔹 Keep selectedCaseSize synced with cart on reload
   useEffect(() => {
     if (cartItem?.caseSize) {
-      setSelectedCaseSize(cartItem.caseSize);
+      const fullCaseSize = product.caseSizes?.find(
+        (s) => s.size === cartItem.caseSize.size
+      );
+      if (fullCaseSize) setSelectedCaseSize(fullCaseSize);
     }
-  }, [cartItem]);
+  }, [cartItem, product.caseSizes]);
 
   const isOutOfStock = product.stock === 0;
 
+  // 🔹 Discount calculation
   const discountPercentage =
-    selectedCaseSize &&
-    selectedCaseSize.price > selectedCaseSize.offeredPrice
+    selectedCaseSize && selectedCaseSize.price > selectedCaseSize.offeredPrice
       ? Math.round(
           ((selectedCaseSize.price - selectedCaseSize.offeredPrice) /
             selectedCaseSize.price) *
@@ -59,10 +60,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         )
       : 0;
 
-
   return (
     <Link href={`/product/${product._id}`} className="block">
       <div className="group relative rounded-2xl bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col min-h-0 flex-1 border border-gray-100 hover:border-gray-200 overflow-hidden cursor-pointer will-change-transform hover:-translate-y-0.5">
+        {/* Badge */}
         {product.badge && (
           <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-20">
             <span className="bg-white p-1 rounded-full shadow-lg block">
@@ -77,12 +78,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
+        {/* Discount */}
         {discountPercentage > 0 && (
           <div className="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[10px] sm:text-xs font-semibold px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full shadow-md">
             {discountPercentage}% OFF
           </div>
         )}
 
+        {/* Product Image */}
         <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
           {product.images && product.images.length > 0 ? (
             <Image
@@ -91,7 +94,6 @@ export default function ProductCard({ product }: ProductCardProps) {
               fill
               sizes="(max-width: 768px) 100vw, 25vw"
               className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
-              priority={false}
             />
           ) : (
             <div className="flex items-center justify-center w-full h-full">
@@ -117,6 +119,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
+        {/* Product Info */}
         <div className="flex flex-col flex-1 px-3 pt-2 pb-2 gap-1 sm:px-4 sm:pt-4 sm:pb-4 sm:gap-2">
           <div className="flex items-center justify-between">
             <p className="text-[11px] sm:text-xs font-semibold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded-md">
@@ -155,6 +158,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             ).join(" • ")}
           </div>
 
+          {/* Price & Case Size Selector */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1 gap-y-1 gap-x-2 min-w-0">
             <div className="flex items-center space-x-1 sm:space-x-2">
               <span className="text-base sm:text-xl font-bold text-gray-900">
@@ -171,15 +175,9 @@ export default function ProductCard({ product }: ProductCardProps) {
                 value={selectedCaseSize?.size?.toString()}
                 onValueChange={(value) => {
                   const newSize = product.caseSizes?.find(
-                    (size) => size.size.toString() === value
+                    (s) => s.size.toString() === value
                   );
                   if (newSize) setSelectedCaseSize(newSize);
-                }}
-                onOpenChange={(open) => {
-                  // Prevent navigation when opening/closing select
-                  if (open) {
-                    // The event is not available in this callback, so we'll handle it differently
-                  }
                 }}
               >
                 <SelectTrigger className="h-7 sm:h-9 text-[11px] sm:text-sm bg-white border-2 border-gray-200 hover:border-cyan-300 focus:border-cyan-500 transition-colors rounded-lg shadow-sm w-full min-w-0 truncate overflow-hidden">
@@ -209,6 +207,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           </div>
 
+          {/* Stock & Add to Cart */}
           <div className="mt-auto space-y-1 sm:space-y-2">
             <div className="flex items-center text-[11px] sm:text-xs text-gray-600">
               <div
@@ -218,6 +217,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               ></div>
               {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
             </div>
+
             {cartItem ? (
               <div className="flex items-center justify-between gap-2">
                 <Button
@@ -228,6 +228,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     e.preventDefault();
                     e.stopPropagation();
                     if (!selectedCaseSize) return;
+
                     if (cartItem.quantity <= 1) {
                       dispatch(
                         removeFromCart({
@@ -245,7 +246,6 @@ export default function ProductCard({ product }: ProductCardProps) {
                       );
                     }
                   }}
-                  aria-label="Decrease quantity"
                 >
                   -
                 </Button>
@@ -260,6 +260,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     e.preventDefault();
                     e.stopPropagation();
                     if (!selectedCaseSize) return;
+
                     if (cartItem.quantity < product.stock) {
                       dispatch(
                         updateQuantity({
@@ -272,36 +273,34 @@ export default function ProductCard({ product }: ProductCardProps) {
                       toast.error("Max stock reached");
                     }
                   }}
-                  aria-label="Increase quantity"
                 >
                   +
                 </Button>
               </div>
             ) : (
-            <Button
-              className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#00A6B9] hover:to-[#008EA1] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-xl shadow-md hover:shadow-lg"
-              disabled={product.stock === 0 || isOutOfStock}
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                if (!selectedCaseSize) return;
+              <Button
+                className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#00A6B9] hover:to-[#008EA1] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-xl shadow-md hover:shadow-lg"
+                disabled={isOutOfStock}
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  if (!selectedCaseSize) return;
 
-                // Always get full CaseSize from product
-                const fullCaseSize = product.caseSizes?.find(
-                  (s) => s.size === selectedCaseSize.size
-                );
-                if (!fullCaseSize) return;
+                  // 🔹 Ensure full CaseSize object is passed
+                  const fullCaseSize = product.caseSizes?.find(
+                    (s) => s.size === selectedCaseSize.size
+                  );
+                  if (!fullCaseSize) return;
 
-                dispatch(addToCart({ product, caseSize: fullCaseSize }));
+                  dispatch(addToCart({ product, caseSize: fullCaseSize }));
 
-                toast.success("Added to cart", {
-                  description: `${product.name} • ${fullCaseSize.size}`,
-                });
-              }}
-              aria-label="Add to cart"
-            >
-              {product.stock > 0 && !isOutOfStock ? "ADD TO CART" : "OUT OF STOCK"}
-            </Button>
+                  toast.success("Added to cart", {
+                    description: `${product.name} • ${fullCaseSize.size}`,
+                  });
+                }}
+              >
+                {product.stock > 0 ? "ADD TO CART" : "OUT OF STOCK"}
+              </Button>
             )}
           </div>
         </div>
