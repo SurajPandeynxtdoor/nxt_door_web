@@ -4,9 +4,13 @@
 import { useMemo, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useAppSelector } from "@/hooks/useAppSelector";
+import { useAppDispatch } from "@/hooks/useAppDispatch";
+import { clearCart } from "@/store/slices/CartSlice";
+
 import CheckoutStepper from "@/components/CheckoutStepper";
 import CartItemCard from "@/components/CartItemCard";
 import PriceSummary from "@/components/PriceSummary";
+
 import { createOrder } from "@/lib/api/order";
 import { createRazorpayOrder, verifyPayment } from "@/lib/api/payment";
 import { getProfile } from "@/lib/api/user";
@@ -40,6 +44,7 @@ interface OrderFormData {
 
 const PaymentPageClient = () => {
   const router = useRouter();
+  const dispatch = useAppDispatch();
   const params = useSearchParams();
   const addressId = params.get("addressId") || undefined;
 
@@ -129,13 +134,22 @@ const PaymentPageClient = () => {
     try {
       setIsLoading(true);
       setError(null);
+
       const orderData = createOrderData("cod");
       const res = await createOrder(orderData);
-      if (res?.error) throw new Error(res.message || "Failed to place order");
-      router.push("/orders");
+
+      if (res?.error) {
+        throw new Error(res.message || "Failed to place order");
+      }
+
+      // ✅ CLEAR CART
+      dispatch(clearCart());
+
+      // ✅ REDIRECT
+      router.replace("/orders");
     } catch (e: any) {
       console.error(e);
-      setError(e?.message || "Failed to place order. Please try again.");
+      setError(e?.message || "Failed to place order");
     } finally {
       setIsLoading(false);
     }
@@ -148,18 +162,23 @@ const PaymentPageClient = () => {
 
       const orderData = createOrderData("onlineTransfer");
       const orderRes = await createOrder(orderData);
-      if (orderRes?.error)
+
+      if (orderRes?.error) {
         throw new Error(orderRes.message || "Failed to create order");
+      }
 
       const rzpRes = await createRazorpayOrder(orderRes.order._id);
-      if (rzpRes?.error)
+      if (rzpRes?.error) {
         throw new Error(rzpRes.message || "Failed to create Razorpay order");
+      }
 
       const razorpayOrderId = rzpRes?.data?.orderId;
-      if (!razorpayOrderId)
+      if (!razorpayOrderId) {
         throw new Error("Razorpay order ID not received from server");
+      }
 
       const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY || "";
+
       const options = {
         key,
         amount: Math.round(toPay * 100),
@@ -167,6 +186,7 @@ const PaymentPageClient = () => {
         name: "Nxt Door Retail",
         description: "Order Payment",
         order_id: razorpayOrderId,
+
         handler: async (response: {
           razorpay_order_id: string;
           razorpay_payment_id: string;
@@ -179,33 +199,47 @@ const PaymentPageClient = () => {
               !response.razorpay_signature
             ) {
               setError("Payment verification failed: Missing payment details");
+              setIsLoading(false);
               return;
             }
+
             const verifyRes = await verifyPayment(
               response.razorpay_order_id,
               response.razorpay_payment_id,
               response.razorpay_signature
             );
+
             if (verifyRes?.error) {
               setError(verifyRes.message || "Payment verification failed");
+              setIsLoading(false);
               return;
             }
-            router.push("/orders");
+
+            // ✅ CLEAR CART AFTER SUCCESS
+            dispatch(clearCart());
+
+            // ✅ SINGLE REDIRECT
+            router.replace("/orders");
           } catch (e) {
             console.error(e);
             setError("Payment verification failed");
+            setIsLoading(false);
           }
         },
+
         prefill: {
-          name: `${authUser?.firstName || ""} ${
-            authUser?.lastName || ""
-          }`.trim(),
+          name: `${authUser?.firstName || ""} ${authUser?.lastName || ""}`.trim(),
           email: authUser?.email,
           contact: authUser?.phone,
         },
+
         theme: { color: "#0891b2" },
+
         modal: {
-          ondismiss: () => setError("Payment was cancelled"),
+          ondismiss: () => {
+            setError("Payment was cancelled");
+            setIsLoading(false);
+          },
         },
       };
 
@@ -214,10 +248,10 @@ const PaymentPageClient = () => {
     } catch (e: any) {
       console.error(e);
       setError(e?.message || "Payment failed. Please try again.");
-    } finally {
       setIsLoading(false);
     }
   };
+
 
   const handlePlaceOrder = async (e?: React.FormEvent) => {
     e?.preventDefault();
