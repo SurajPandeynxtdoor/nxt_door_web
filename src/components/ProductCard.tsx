@@ -1,7 +1,7 @@
 "use client";
 
 import type { Product } from "@/types/catalog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
@@ -26,27 +26,39 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const [selectedCaseSize, setSelectedCaseSize] = useState(
-    product.caseSizes?.find((size) => size?.isDefault) || product.caseSizes?.[0]
-  );
-  const isOutOfStock = product.stock === 0;
   const dispatch = useAppDispatch();
+
+  /** 🔹 CART ITEM (if already added) */
   const cartItem = useAppSelector((s) =>
-    s.cart.items.find(
-      (it) =>
-        it.productId === product._id &&
-        it.caseSize.size === (selectedCaseSize?.size ?? -1)
-    )
+    s.cart.items.find((it) => it.productId === product._id)
   );
 
+  /** 🔹 SELECTED CASE SIZE (SYNC WITH CART) */
+  const [selectedCaseSize, setSelectedCaseSize] = useState(
+    cartItem?.caseSize ||
+      product.caseSizes?.find((s) => s.isDefault) ||
+      product.caseSizes?.[0]
+  );
+
+  /** 🔹 KEEP CASE SIZE SYNC AFTER RELOAD */
+  useEffect(() => {
+    if (cartItem?.caseSize) {
+      setSelectedCaseSize(cartItem.caseSize);
+    }
+  }, [cartItem]);
+
+  const isOutOfStock = product.stock === 0;
+
   const discountPercentage =
-    selectedCaseSize && selectedCaseSize.price > selectedCaseSize.offeredPrice
+    selectedCaseSize &&
+    selectedCaseSize.price > selectedCaseSize.offeredPrice
       ? Math.round(
           ((selectedCaseSize.price - selectedCaseSize.offeredPrice) /
             selectedCaseSize.price) *
             100
         )
       : 0;
+
 
   return (
     <Link href={`/product/${product._id}`} className="block">
@@ -110,7 +122,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <p className="text-[11px] sm:text-xs font-semibold text-cyan-700 bg-cyan-50 px-1.5 py-0.5 rounded-md">
               {product._brand?.name}
             </p>
-            {/* <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
+            <div className="flex items-center text-[11px] sm:text-xs text-gray-600 bg-gray-50 px-2 py-1 rounded-lg">
               <svg
                 className="w-3 h-3 mr-1 text-gray-500"
                 fill="none"
@@ -125,7 +137,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 />
               </svg>
               {product.weight || "250g"}
-            </div> */}
+            </div>
           </div>
 
           <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 line-clamp-2 min-h-[2.2em] leading-tight group-hover:text-gray-700 transition-colors">
@@ -266,24 +278,30 @@ export default function ProductCard({ product }: ProductCardProps) {
                 </Button>
               </div>
             ) : (
-              <Button
-                className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#00A6B9] hover:to-[#008EA1] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-xl shadow-md hover:shadow-lg"
-                disabled={product.stock === 0 || isOutOfStock}
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  if (!selectedCaseSize) return;
-                  dispatch(addToCart({ product, caseSize: selectedCaseSize }));
-                  toast.success("Added to cart", {
-                    description: `${product.name} • ${selectedCaseSize.size}`,
-                  });
-                }}
-                aria-label="Add to cart"
-              >
-                {product.stock > 0 && !isOutOfStock
-                  ? "ADD TO CART"
-                  : "OUT OF STOCK"}
-              </Button>
+            <Button
+              className="w-full px-2 py-1.5 sm:px-4 sm:py-3 bg-gradient-to-r from-[#00B7CD] to-[#0099AD] text-white text-xs sm:text-base font-semibold hover:from-[#00A6B9] hover:to-[#008EA1] disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all duration-300 rounded-xl shadow-md hover:shadow-lg"
+              disabled={product.stock === 0 || isOutOfStock}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                if (!selectedCaseSize) return;
+
+                // Always get full CaseSize from product
+                const fullCaseSize = product.caseSizes?.find(
+                  (s) => s.size === selectedCaseSize.size
+                );
+                if (!fullCaseSize) return;
+
+                dispatch(addToCart({ product, caseSize: fullCaseSize }));
+
+                toast.success("Added to cart", {
+                  description: `${product.name} • ${fullCaseSize.size}`,
+                });
+              }}
+              aria-label="Add to cart"
+            >
+              {product.stock > 0 && !isOutOfStock ? "ADD TO CART" : "OUT OF STOCK"}
+            </Button>
             )}
           </div>
         </div>
