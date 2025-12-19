@@ -35,7 +35,6 @@ const PriceSummary = ({
           <span>Shipping</span>
           {shipping > 0 ? (
             <div className="flex items-center space-x-2">
-              <span className="line-through text-gray-500">₹40.00</span>
               <span className="font-semibold">₹{shipping.toFixed(2)}</span>
             </div>
           ) : (
