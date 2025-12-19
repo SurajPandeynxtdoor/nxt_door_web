@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import type { Product } from "@/types/catalog";
 import { useState } from "react";
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -61,11 +62,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         {product.badge && (
           <div className="absolute top-2 right-2 sm:top-3 sm:right-3 z-20">
             <span className="bg-white p-1 rounded-full shadow-lg block">
-              <Image
+              <img
                 src={product.badge}
                 alt="Brand Badge"
-                width={32}
-                height={32}
                 className="w-6 h-6 sm:w-8 sm:h-8 rounded-full"
               />
             </span>
@@ -82,12 +81,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         {/* Product Image */}
         <div className="relative w-full aspect-[4/5] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
           {product.images && product.images.length > 0 ? (
-            <Image
+            <img
               src={product.images[0]}
               alt={product.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 25vw"
-              className="object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
             />
           ) : (
             <div className="flex items-center justify-center w-full h-full">

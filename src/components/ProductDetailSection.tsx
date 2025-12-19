@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useState } from "react";
@@ -21,7 +22,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+// import Image from "next/image";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { addToCart, updateQuantity } from "@/store/slices/CartSlice";
 import { toast } from "sonner";
@@ -144,12 +145,15 @@ export default function ProductDetailSection({
             {/* Main Image */}
             <div className="relative aspect-square rounded-xl overflow-hidden">
               {images.length > 0 && images[selectedImage] ? (
-                <Image
+                <img
                   src={images[selectedImage]}
                   alt={product.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onError={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.display =
+                      "none";
+                  }}
                 />
               ) : (
                 <div className="flex items-center justify-center h-full">
@@ -172,12 +176,15 @@ export default function ProductDetailSection({
                     }`}
                   >
                     {image && (
-                      <Image
+                      <img
                         src={image}
                         alt={`${product.name} - Image ${index + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="80px"
+                        loading="lazy"
+                        className="absolute inset-0 w-full h-full object-cover"
+                        onError={(e) => {
+                          (e.currentTarget as HTMLImageElement).style.display =
+                            "none";
+                        }}
                       />
                     )}
                   </button>

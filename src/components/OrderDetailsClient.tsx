@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // src/components/OrderDetailsClient.tsx
 "use client";
 
@@ -21,7 +22,7 @@ import {
   Share2,
   MessageCircle,
 } from "lucide-react";
-import Image from "next/image";
+// import Image from "next/image";
 import type { Order, OrderItem } from "@/types/order";
 import type { Product } from "@/types/catalog";
 import { getOrder } from "@/lib/api/order";
@@ -352,12 +353,19 @@ const OrderDetailsClient = ({ orderId }: { orderId: string }) => {
                     >
                       <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center flex-shrink-0 self-center sm:self-auto">
                         {productInfo.image ? (
-                          <Image
+                          <img
                             src={productInfo.image}
                             alt={productInfo.name}
-                            width={80}
-                            height={80}
+                            loading="lazy"
                             className="w-full h-full object-cover"
+                            onError={(e) => {
+                              const target =
+                                e.currentTarget as HTMLImageElement;
+                              target.style.display = "none";
+                              target.nextElementSibling?.classList.remove(
+                                "hidden"
+                              );
+                            }}
                           />
                         ) : null}
                         <ImageIcon className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 hidden" />

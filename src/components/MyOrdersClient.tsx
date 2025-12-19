@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -23,7 +24,7 @@ import { useRouter } from "next/navigation";
 import type { Order, OrderItem } from "@/types/order";
 import type { Product } from "@/types/catalog";
 import { getUserOrders } from "@/lib/api/order";
-import Image from "next/image";
+// import Image from "next/image";
 
 const MyOrdersClient = () => {
   const router = useRouter();
@@ -273,15 +274,14 @@ const MyOrdersClient = () => {
                             <div key={i} className="flex items-center gap-3">
                               <div className="w-12 h-12 rounded-lg overflow-hidden bg-gray-100 flex items-center justify-center">
                                 {productInfo.image ? (
-                                  <Image
+                                  <img
                                     src={productInfo.image}
                                     alt={productInfo.name}
-                                    width={48}
-                                    height={48}
+                                    loading="lazy"
                                     className="w-full h-full object-cover"
                                     onError={(e) => {
                                       const target =
-                                        e.target as HTMLImageElement;
+                                        e.currentTarget as HTMLImageElement;
                                       target.style.display = "none";
                                       target.nextElementSibling?.classList.remove(
                                         "hidden"
