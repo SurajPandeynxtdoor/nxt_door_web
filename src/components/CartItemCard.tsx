@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
 import type { CartItem } from "@/types/cart";
@@ -54,13 +55,15 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
     <div className="p-4 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
       <div className="flex items-center space-x-4">
         <div className="w-20 h-20 relative border rounded-lg p-1">
-          <Image
+          <img
             src={item.image || "/images/NXTDoor.jpeg"}
             alt={item.name}
-            fill
-            sizes="80px"
-            className="object-contain rounded-lg"
-            priority={false}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-contain rounded-lg"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).src =
+                "/images/NXTDoor.jpeg";
+            }}
           />
         </div>
         <div className="flex-grow">
