@@ -77,7 +77,7 @@ const CategoryNavBar = ({ categories }: CategoryNavBarProps) => {
           ref={scrollContainerRef}
           className="flex items-center space-x-6 px-4 overflow-x-auto scrollbar-hide relative"
         >
-          <div className="flex items-center space-x-6 py-3 last:hidden">
+          <div className="flex items-center space-x-6 py-3 last:hidden ">
             {navCategories.map((category) => {
               const isActive = pathname === category.path;
               return (
