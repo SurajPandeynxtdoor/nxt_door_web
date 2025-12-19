@@ -176,9 +176,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} min-h-screen bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50`}
-      >
+      <body className={`${inter.className} min-h-screen bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50`}>
         <ReduxProvider>
           <AuthProvider>
             <Header />
