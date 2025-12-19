@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import CartButton from "@/components/common/CartButton";
 import SearchBar from "@/components/common/SearchBar";
 import UserProfile from "@/components/common/UserProfile";
@@ -8,8 +6,6 @@ import AnnouncementBar from "@/components/common/AnnouncementBar";
 import Link from "next/link";
 
 const Header = () => {
-  const [search, setSearch] = useState("");
-
   return (
     <div className="w-full border-b bg-background bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50  sticky top-0 z-50">
       <AnnouncementBar />
@@ -27,11 +23,10 @@ const Header = () => {
             </Link>
           </div>
           <div className="flex-1 hidden md:block max-w-xl">
-           <SearchBar onSearch={setSearch} />
+            <SearchBar />
           </div>
           <div className="flex items-center gap-4">
             <CartButton />
-
             <UserProfile />
           </div>
         </div>
