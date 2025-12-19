@@ -9,34 +9,58 @@ import PriceSummary from "@/components/PriceSummary";
 
 const CartPageClient = () => {
   const router = useRouter();
+
   const { items } = useAppSelector((state) => state.cart);
   const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
+  /**
+   * CART CALCULATIONS (FIXED)
+   */
   const { totalItems, orderTotal, shipping, toPay } = useMemo(() => {
-    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    const totalItems = items.reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+
     const orderTotal = items.reduce(
       (total, item) =>
         total + Number(item.caseSize.offeredPrice || 0) * item.quantity,
       0
     );
-    const shipping = orderTotal > 500 ? 0 : 40;
+
+    // ✅ SHIPPING FIX
+    const shipping =
+      totalItems === 0
+        ? 0
+        : orderTotal > 500
+        ? 0
+        : 40;
+
     const toPay = orderTotal + shipping;
+
     return { totalItems, orderTotal, shipping, toPay };
   }, [items]);
 
+  /**
+   * CONTINUE BUTTON HANDLER
+   */
   const handleOnClick = () => {
     if (!isAuthenticated) {
       setIsLoginModalOpen(true);
       return;
     }
-    // If authenticated, proceed to address selection (page can handle add/select)
+
     router.push("/select-address");
   };
 
+  /**
+   * BUTTON TEXT LOGIC
+   */
   const buttonText = !isAuthenticated
     ? "Login to Continue"
-    : Array.isArray(user?.address) && user!.address!.length > 0
+    : Array.isArray(user?.address) && user.address.length > 0
     ? "Select Address"
     : "Add/Select Address";
 
@@ -46,8 +70,10 @@ const CartPageClient = () => {
         <CheckoutStepper currentStep={0} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* LEFT SIDE – CART ITEMS */}
           <main className="lg:col-span-2 space-y-6">
             <div className="rounded-lg shadow-sm">
+              {/* HEADER */}
               <div className="flex justify-between items-center p-6 border-b">
                 <div className="flex items-center space-x-3">
                   <svg
@@ -69,6 +95,7 @@ const CartPageClient = () => {
                     Cart details
                   </h2>
                 </div>
+
                 <div className="text-sm text-gray-600 font-medium">
                   <span>
                     Total items:{" "}
@@ -85,6 +112,8 @@ const CartPageClient = () => {
                   </span>
                 </div>
               </div>
+
+              {/* CART ITEMS */}
               <div className="divide-y">
                 {items.length > 0 ? (
                   items.map((item) => (
@@ -107,6 +136,8 @@ const CartPageClient = () => {
               </div>
             </div>
           </main>
+
+          {/* RIGHT SIDE – PRICE SUMMARY */}
           <aside className="lg:col-span-1">
             {items.length > 0 && (
               <PriceSummary

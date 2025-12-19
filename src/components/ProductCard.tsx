@@ -2,8 +2,7 @@
 "use client";
 
 import type { Product } from "@/types/catalog";
-import { useState } from "react";
-// import Image from "next/image";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { useAppSelector } from "@/hooks/useAppSelector";
@@ -29,21 +28,27 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const dispatch = useAppDispatch();
 
-  // 🔹 SELECTED CASE SIZE (default or first)
+  // 🔹 Get cart item for this product
+  const cartItem = useAppSelector((s) =>
+    s.cart.items.find((it) => it.productId === product._id)
+  );
+
+  // 🔹 SELECTED CASE SIZE (sync with cart first)
   const [selectedCaseSize, setSelectedCaseSize] = useState(
     product.caseSizes?.find((s) => s.isDefault) || product.caseSizes?.[0]
   );
 
-  const isOutOfStock = product.stock === 0;
+  // 🔹 Keep selectedCaseSize synced with cart on reload
+  useEffect(() => {
+    if (cartItem?.caseSize) {
+      const fullCaseSize = product.caseSizes?.find(
+        (s) => s.size === cartItem.caseSize.size
+      );
+      if (fullCaseSize) setSelectedCaseSize(fullCaseSize);
+    }
+  }, [cartItem, product.caseSizes]);
 
-  // 🔹 Get cart item for this product + selected case size
-  const cartItem = useAppSelector((s) =>
-    s.cart.items.find(
-      (it) =>
-        it.productId === product._id &&
-        it.caseSize.size === selectedCaseSize?.size
-    )
-  );
+  const isOutOfStock = product.stock === 0;
 
   // 🔹 Discount calculation
   const discountPercentage =
@@ -262,7 +267,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   e.stopPropagation();
                   if (!selectedCaseSize) return;
 
-                  // Ensure full CaseSize object is passed
+                  // 🔹 Ensure full CaseSize object is passed
                   const fullCaseSize = product.caseSizes?.find(
                     (s) => s.size === selectedCaseSize.size
                   );
