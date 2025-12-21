@@ -210,11 +210,11 @@ export default function AboutUsPage() {
                 className="w-24 h-24 rounded-full mb-3 object-cover border-4 border-[#00B7CD]"
               />
               <h4 className="font-semibold text-lg text-gray-800">
-                Shailendra Pandey
+                Abhimanyu Jha
               </h4>
               <p className="text-sm text-gray-500">Founder & CEO</p>
             </div>
-            <div className="flex flex-col items-center">
+            {/* <div className="flex flex-col items-center">
               <Image
                 src="/images/abhimanyu.jpeg"
                 alt="Co-Founder"
@@ -227,7 +227,7 @@ export default function AboutUsPage() {
                 Priya Sharma
               </h4>
               <p className="text-sm text-gray-500">Co-Founder & Nutritionist</p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
