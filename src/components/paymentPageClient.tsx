@@ -179,6 +179,8 @@ const PaymentPageClient = () => {
 
       const key = process.env.NEXT_PUBLIC_RAZORPAY_KEY || "";
 
+      console.log("KEY RAZORPAY--------->", key);
+
       const options = {
         key,
         amount: Math.round(toPay * 100),
@@ -228,7 +230,9 @@ const PaymentPageClient = () => {
         },
 
         prefill: {
-          name: `${authUser?.firstName || ""} ${authUser?.lastName || ""}`.trim(),
+          name: `${authUser?.firstName || ""} ${
+            authUser?.lastName || ""
+          }`.trim(),
           email: authUser?.email,
           contact: authUser?.phone,
         },
@@ -251,7 +255,6 @@ const PaymentPageClient = () => {
       setIsLoading(false);
     }
   };
-
 
   const handlePlaceOrder = async (e?: React.FormEvent) => {
     e?.preventDefault();
