@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReduxProvider } from "@/providers/ReduxProviders";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import Header from "@/components/common/Header";
+import { Analytics } from "@vercel/analytics/next";
 
 export const viewport = {
   width: "device-width",
@@ -183,6 +184,7 @@ export default function RootLayout({
             <main>{children}</main>
           </AuthProvider>
         </ReduxProvider>
+        <Analytics />
       </body>
     </html>
   );
