@@ -15,7 +15,7 @@ export async function fetchCategories(): Promise<Category[]> {
   const url = `${base}/api/category-list`;
 
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 5000);
+  const t = setTimeout(() => controller.abort(), 15000);
 
   const res = await fetch(url, {
     next: { revalidate: 3600 },
@@ -52,7 +52,7 @@ export async function fetchCategoryProducts({
   const url = `${base}/api/home/category/${categoryId}?${params.toString()}`;
 
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 5000);
+  const t = setTimeout(() => controller.abort(), 15000);
 
   const res = await fetch(url, {
     next: { revalidate: 60 },

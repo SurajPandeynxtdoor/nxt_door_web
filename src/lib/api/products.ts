@@ -41,7 +41,7 @@ export async function fetchProducts({
   }/api/home/products?${params.toString()}`;
 
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 5000);
+  const t = setTimeout(() => controller.abort(), 15000);
 
   const res = await fetch(url, {
     next: { revalidate: 60 },
@@ -61,7 +61,7 @@ export async function fetchProductDetails(
   const url = `${process.env.NEXT_PUBLIC_API_URL}/api/home/product/${productId}`;
 
   const controller = new AbortController();
-  const t = setTimeout(() => controller.abort(), 5000);
+  const t = setTimeout(() => controller.abort(), 15000);
 
   const res = await fetch(url, {
     next: { revalidate: 60 },
