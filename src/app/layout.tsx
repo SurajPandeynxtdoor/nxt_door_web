@@ -148,11 +148,6 @@ export const metadata: Metadata = {
     description: "Your trusted FMCG retail partner",
     images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
-  themeColor: "#ffffff",
   robots: {
     index: true,
     follow: true,
