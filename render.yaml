@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: nxt-door-web
+    runtime: node
+    plan: starter
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: npm run start
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: NODE_ENV
+        value: production
+      # NEXT_PUBLIC_* vars are inlined at BUILD time, so this must be set
+      # in the Render dashboard before the build runs (not just at runtime).
+      # Set it to your backend API base URL, e.g. https://api.onlytruthnosecrets.com
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      # Required for the payment page (Razorpay). Also build-time inlined.
+      - key: NEXT_PUBLIC_RAZORPAY_KEY
+        sync: false

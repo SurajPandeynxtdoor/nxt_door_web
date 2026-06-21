@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/providers/ReduxProviders";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import Header from "@/components/common/Header";
 
-export const viewport = {
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#ffffff",
@@ -148,11 +148,6 @@ export const metadata: Metadata = {
     description: "Your trusted FMCG retail partner",
     images: ["https://www.onlytruthnosecrets.com/images/NXTDoor.jpeg"],
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
-  themeColor: "#ffffff",
   robots: {
     index: true,
     follow: true,
