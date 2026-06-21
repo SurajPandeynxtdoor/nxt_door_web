@@ -167,11 +167,12 @@ export default async function Footer() {
                     </a>
                     <a href="#" className="block">
                       <Image
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Download_on_the_App_Store_Badge.svg/2560px-Download_on_the_App_Store_Badge.svg.png"
+                        src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
                         alt="Download on the App Store"
                         className="h-12 w-auto transition-opacity hover:opacity-80"
                         width={200} // or the actual width of the image
                         height={60}
+                        unoptimized
                       />
                     </a>
                   </div>
