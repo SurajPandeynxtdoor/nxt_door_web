@@ -17,17 +17,29 @@ export async function fetchCategories(): Promise<Category[]> {
   const controller = new AbortController();
   const t = setTimeout(() => controller.abort(), 5000);
 
-  const res = await fetch(url, {
-    next: { revalidate: 3600 },
-    signal: controller.signal,
-  });
-  clearTimeout(t);
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+      signal: controller.signal,
+    });
 
-  if (!res.ok) throw new Error("Failed to fetch categories");
-  const data = await res.json();
-  if (Array.isArray(data)) return data;
-  if (data.categories) return data.categories;
-  return [];
+    if (!res.ok) {
+      console.error(`fetchCategories: ${res.status} ${res.statusText} for ${url}`);
+      return [];
+    }
+
+    const data = await res.json();
+    if (Array.isArray(data)) return data;
+    if (data.categories) return data.categories;
+    if (data.allCategory) return data.allCategory;
+    return [];
+  } catch (error) {
+    // Network error, timeout/abort, bad JSON, etc. Never crash the render.
+    console.error("fetchCategories failed:", error);
+    return [];
+  } finally {
+    clearTimeout(t);
+  }
 }
 
 export async function fetchCategoryProducts({
