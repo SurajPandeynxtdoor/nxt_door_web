@@ -29,6 +29,19 @@ const nextConfig = {
       },
     ],
   },
+  // On deployments that should serve the PointMax tool as the landing page
+  // (set POINTS_AS_HOME=true), send the root URL to /points. The storefront
+  // deployment leaves this unset and keeps "/" as its home.
+  redirects: async () => {
+    if (process.env.POINTS_AS_HOME !== "true") return [];
+    return [
+      {
+        source: "/",
+        destination: "/points",
+        permanent: false,
+      },
+    ];
+  },
   headers: async () => {
     return [
       {
