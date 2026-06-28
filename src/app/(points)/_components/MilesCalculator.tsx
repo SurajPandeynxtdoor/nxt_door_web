@@ -14,6 +14,7 @@ import {
   type LoyaltyProgram,
 } from "../_lib/types";
 import { formatInr, ModeToggle, num, RedeemLink, StepHeading } from "./shared";
+import FaresInPoints from "./FaresInPoints";
 
 const DEFAULT_MILES = 30000;
 
@@ -252,6 +253,14 @@ export default function MilesCalculator() {
                         </div>
                       )}
                     </div>
+                  </div>
+
+                  <div className="px-4 pb-3">
+                    <FaresInPoints
+                      programId={r.program.id}
+                      available={r.points}
+                      unit={r.program.unit}
+                    />
                   </div>
 
                   {isExpanded && (

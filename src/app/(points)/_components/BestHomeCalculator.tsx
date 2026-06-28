@@ -18,6 +18,7 @@ import {
   RedeemLink,
   StepHeading,
 } from "./shared";
+import FaresInPoints from "./FaresInPoints";
 
 const DEFAULT_POINTS = 25000;
 
@@ -43,6 +44,24 @@ function pathLabel(o: OptionValuation): string {
     ? ` → ${o.bestPartner.bestVia.transfer.name}`
     : "";
   return `${o.option.label} · ${o.bestPartner.partner.name}${via}`;
+}
+
+/** The final transfer destination (program id + resulting units) for fare checks. */
+function destination(o: OptionValuation): { id?: string; units: number; unit: string } | null {
+  if (!o.bestPartner) return null;
+  const { partner, units, bestVia } = o.bestPartner;
+  if (bestVia) {
+    return {
+      id: bestVia.transfer.loyaltyId,
+      units: bestVia.units,
+      unit: bestVia.transfer.kind === "hotel" ? "points" : "miles",
+    };
+  }
+  return {
+    id: partner.loyaltyId,
+    units,
+    unit: partner.kind === "hotel" ? "points" : "miles",
+  };
 }
 
 export default function BestHomeCalculator() {
@@ -122,6 +141,7 @@ export default function BestHomeCalculator() {
               const best = r.best;
               const runnerUp = r.options[1];
               const delta = runnerUp ? best.value - runnerUp.value : 0;
+              const dest = destination(best);
               return (
                 <div
                   key={r.card.id}
@@ -154,6 +174,13 @@ export default function BestHomeCalculator() {
                           </>
                         )}
                       </p>
+                      {dest?.id && (
+                        <FaresInPoints
+                          programId={dest.id}
+                          available={dest.units}
+                          unit={dest.unit}
+                        />
+                      )}
                     </div>
                     <div className="text-right">
                       <p className="text-2xl font-bold text-amber-300">

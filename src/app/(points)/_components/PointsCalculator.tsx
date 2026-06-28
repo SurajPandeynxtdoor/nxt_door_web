@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ChevronDown, Plane, Plus, Trophy, X } from "lucide-react";
 import { CARDS, getCard } from "../_data/cards";
 import { formatInr, num, RedeemLink, StepHeading } from "./shared";
+import FaresInPoints from "./FaresInPoints";
 import {
   compareCards,
   MODE_LABEL,
@@ -314,6 +315,20 @@ export default function PointsCalculator() {
                           (₹{r.best.valuePerPoint.toFixed(2)}/pt)
                         </span>
                       </p>
+                      {r.best.bestPartner &&
+                        (() => {
+                          const bp = r.best.bestPartner;
+                          const dest = bp.bestVia
+                            ? { id: bp.bestVia.transfer.loyaltyId, units: bp.bestVia.units, kind: bp.bestVia.transfer.kind }
+                            : { id: bp.partner.loyaltyId, units: bp.units, kind: bp.partner.kind };
+                          return dest.id ? (
+                            <FaresInPoints
+                              programId={dest.id}
+                              available={dest.units}
+                              unit={dest.kind === "hotel" ? "points" : "miles"}
+                            />
+                          ) : null;
+                        })()}
                     </div>
                     <div className="text-right">
                       <p

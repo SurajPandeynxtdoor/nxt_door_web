@@ -15,6 +15,7 @@ import {
   RedeemLink,
   StepHeading,
 } from "./shared";
+import FaresInPoints from "./FaresInPoints";
 
 const DEFAULT_MILES = 30000;
 const DEFAULT_POINTS = 25000;
@@ -293,6 +294,12 @@ function PooledCard({
           </span>
         </div>
       </div>
+
+      <FaresInPoints
+        programId={r.program.id}
+        available={r.pooled}
+        unit={r.program.unit}
+      />
 
       {r.best.portal && (
         <div className="mt-3">
