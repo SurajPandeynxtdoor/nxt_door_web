@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ChevronDown, Ticket } from "lucide-react";
-import { getAwards } from "../_data/awards";
+import { Check, ChevronDown, ExternalLink, Ticket } from "lucide-react";
+import { getAwardChart } from "../_data/awards";
 import { num } from "./shared";
 
 /**
@@ -19,8 +19,9 @@ export default function FaresInPoints({
   unit: string;
 }) {
   const [open, setOpen] = useState(false);
-  const samples = getAwards(programId);
-  if (!samples || samples.length === 0) return null;
+  const chart = getAwardChart(programId);
+  if (!chart || chart.samples.length === 0) return null;
+  const { samples, searchUrl } = chart;
 
   return (
     <div className="mt-2">
@@ -67,6 +68,19 @@ export default function FaresInPoints({
               </li>
             );
           })}
+          {searchUrl && (
+            <li className="pt-1">
+              <a
+                href={searchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-amber-300/90 hover:text-amber-200"
+              >
+                Search award seats
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </li>
+          )}
         </ul>
       )}
     </div>
