@@ -35,7 +35,7 @@ export default function PointsLayout({
     <div className="min-h-screen bg-slate-950 text-slate-100 antialiased">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <Link href="/points" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-yellow-500 text-slate-900">
               <Sparkles className="h-5 w-5" />
             </span>
