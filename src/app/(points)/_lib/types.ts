@@ -52,6 +52,8 @@ export interface OnwardTransfer {
   /** Approximate INR value of one onward unit (baseline economy redemption). */
   valuePerUnit: number;
   notes?: string;
+  /** Links to a LoyaltyProgram id, enabling chained pool-and-redeem. */
+  loyaltyId?: string;
 }
 
 export interface TransferPartner {

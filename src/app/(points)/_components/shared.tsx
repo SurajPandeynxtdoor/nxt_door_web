@@ -60,6 +60,54 @@ export function StepHeading({
   );
 }
 
+/** A title + numeric balance input row used across the calculators. */
+export function BalanceRow({
+  title,
+  subtitle,
+  unit,
+  value,
+  onChange,
+  onRemove,
+}: {
+  title: string;
+  subtitle?: string;
+  unit: string;
+  value: number;
+  onChange: (v: number) => void;
+  onRemove: () => void;
+}) {
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-white/10 bg-white/5 p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p className="font-medium text-slate-100">{title}</p>
+        {subtitle && (
+          <p className="text-xs capitalize text-slate-500">{subtitle}</p>
+        )}
+      </div>
+      <div className="flex items-center gap-2">
+        <input
+          type="number"
+          inputMode="numeric"
+          min={0}
+          step={1000}
+          value={value}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="w-36 rounded-lg border border-white/10 bg-slate-900 px-3 py-2 text-right text-slate-100 outline-none focus:border-amber-400"
+        />
+        <span className="text-sm text-slate-400">{unit}</span>
+        <button
+          type="button"
+          onClick={onRemove}
+          aria-label="Remove"
+          className="rounded-md p-1.5 text-slate-500 hover:bg-white/10 hover:text-slate-200"
+        >
+          <X className="h-4 w-4" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 /** Grouped chip selector used by the card / program pickers. */
 export function ChipPicker({
   groups,

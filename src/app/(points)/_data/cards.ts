@@ -97,6 +97,7 @@ const marriott = (ratio: number): TransferPartner => ({
       ratio: 1 / 3,
       valuePerUnit: 0.65,
       notes: "3 Bonvoy : 1 mile + 5,000-mile bonus per 60,000 transferred.",
+      loyaltyId: "krisflyer",
     },
     {
       id: "ai",
@@ -105,6 +106,7 @@ const marriott = (ratio: number): TransferPartner => ({
       ratio: 1 / 3,
       valuePerUnit: 0.55,
       notes: "3 Bonvoy : 1 mile + 5,000-mile bonus per 60,000 transferred.",
+      loyaltyId: "flying-returns",
     },
   ],
 });

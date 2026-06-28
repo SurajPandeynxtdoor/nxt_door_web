@@ -8,19 +8,37 @@ function round2(n: number): number {
   return Math.round(n * 100) / 100;
 }
 
-/** Best transfer ratio from a card into a given loyalty program, if any. */
+/**
+ * Best transfer path from a card into a given loyalty program, considering both
+ * direct transfers and chained ones (card → hotel program → onward airline).
+ * Returns the path with the highest effective ratio.
+ */
 export function cardTransferToLoyalty(
   card: CreditCard,
   loyaltyId: string
-): { ratio: number; partnerName: string } | null {
+): { ratio: number; pathLabel: string; chained: boolean } | null {
   const program = getProgram(card.programId);
   if (!program) return null;
-  let best: { ratio: number; partnerName: string } | null = null;
+
+  let best: { ratio: number; pathLabel: string; chained: boolean } | null = null;
+  const consider = (candidate: typeof best) => {
+    if (candidate && (!best || candidate.ratio > best.ratio)) best = candidate;
+  };
+
   for (const option of program.options) {
     for (const partner of option.partners ?? []) {
+      // Direct: card → partner (the target program itself).
       if (partner.loyaltyId === loyaltyId) {
-        if (!best || partner.ratio > best.ratio) {
-          best = { ratio: partner.ratio, partnerName: partner.name };
+        consider({ ratio: partner.ratio, pathLabel: partner.name, chained: false });
+      }
+      // Chained: card → partner → onward (the target program).
+      for (const onward of partner.onward ?? []) {
+        if (onward.loyaltyId === loyaltyId) {
+          consider({
+            ratio: partner.ratio * onward.ratio,
+            pathLabel: `${partner.name} → ${onward.name}`,
+            chained: true,
+          });
         }
       }
     }
@@ -30,7 +48,10 @@ export function cardTransferToLoyalty(
 
 export interface CardContribution {
   card: CreditCard;
-  partnerName: string;
+  /** Human path, e.g. "Etihad Guest" or "Marriott Bonvoy → Air India Flying Returns". */
+  pathLabel: string;
+  /** True when the route goes through an intermediate program. */
+  chained: boolean;
   ratio: number;
   cardPoints: number;
   /** Miles/points added after transfer: cardPoints * ratio. */
@@ -81,7 +102,8 @@ export function poolAndRedeem(
         Number.isFinite(cs.points) && cs.points > 0 ? cs.points : 0;
       contributions.push({
         card,
-        partnerName: link.partnerName,
+        pathLabel: link.pathLabel,
+        chained: link.chained,
         ratio: link.ratio,
         cardPoints,
         units: round2(cardPoints * link.ratio),
