@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/providers/ReduxProviders";
 import { AuthProvider } from "@/components/auth/AuthProvider";
-import Header from "@/components/common/Header";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -171,12 +170,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen bg-gradient-to-b from-emerald-50 via-cyan-50 to-amber-50`}>
+      <body className={`${inter.className} min-h-screen`}>
         <ReduxProvider>
-          <AuthProvider>
-            <Header />
-            <main>{children}</main>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </ReduxProvider>
       </body>
     </html>
