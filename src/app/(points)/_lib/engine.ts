@@ -1,5 +1,6 @@
 import type {
   CreditCard,
+  Portal,
   RedemptionCategory,
   RedemptionOption,
   RewardProgram,
@@ -39,6 +40,8 @@ export interface OptionValuation {
   partners: PartnerValuation[];
   /** The highest-value partner, if any. */
   bestPartner?: PartnerValuation;
+  /** Where to redeem this option (option override, else program default). */
+  portal?: Portal;
 }
 
 export interface CardValuation {
@@ -85,9 +88,11 @@ function valuatePartners(
 function valuateOption(
   option: RedemptionOption,
   points: number,
-  multiplier: number
+  multiplier: number,
+  programPortal?: Portal
 ): OptionValuation {
   const partners = valuatePartners(option, points, multiplier);
+  const portal = option.portal ?? programPortal;
 
   // For transfer options the value is driven by the best partner (with the
   // cabin multiplier applied). Other options use their fixed per-point value.
@@ -100,6 +105,7 @@ function valuateOption(
       value: bestPartner.value,
       partners,
       bestPartner,
+      portal,
     };
   }
 
@@ -108,6 +114,7 @@ function valuateOption(
     valuePerPoint: option.valuePerPoint,
     value: round2(points * option.valuePerPoint),
     partners,
+    portal,
   };
 }
 
@@ -133,7 +140,7 @@ export function valuateCard(
   if (relevant.length === 0) return null;
 
   const options = relevant
-    .map((option) => valuateOption(option, safePoints, multiplier))
+    .map((option) => valuateOption(option, safePoints, multiplier, program.portal))
     .sort((a, b) => b.value - a.value);
 
   const best = options[0];

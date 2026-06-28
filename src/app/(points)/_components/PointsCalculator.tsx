@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronDown, Plane, Plus, Trophy, X } from "lucide-react";
+import { ChevronDown, ExternalLink, Plane, Plus, Trophy, X } from "lucide-react";
 import { CARDS, getCard } from "../_data/cards";
 import {
   compareCards,
@@ -343,6 +343,11 @@ export default function PointsCalculator() {
                           ].join(" ")}
                         />
                       </button>
+                      {r.best.portal && (
+                        <div className="mt-2 sm:flex sm:justify-end">
+                          <RedeemLink portal={r.best.portal} prominent />
+                        </div>
+                      )}
                     </div>
                   </div>
 
@@ -397,7 +402,7 @@ function OptionRow({
   valuation: OptionValuation;
   isBest: boolean;
 }) {
-  const { option, valuePerPoint, value, partners } = valuation;
+  const { option, valuePerPoint, value, partners, portal } = valuation;
   return (
     <div>
       <div className="flex items-start justify-between gap-4 text-sm">
@@ -410,6 +415,11 @@ function OptionRow({
           </p>
           {option.notes && (
             <p className="mt-0.5 text-xs text-slate-500">{option.notes}</p>
+          )}
+          {portal && (
+            <div className="mt-1">
+              <RedeemLink portal={portal} />
+            </div>
           )}
         </div>
         <span className="shrink-0 tabular-nums text-slate-200">
@@ -444,6 +454,30 @@ function OptionRow({
         </ul>
       )}
     </div>
+  );
+}
+
+function RedeemLink({
+  portal,
+  prominent = false,
+}: {
+  portal: { name: string; url: string };
+  prominent?: boolean;
+}) {
+  return (
+    <a
+      href={portal.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={
+        prominent
+          ? "inline-flex items-center gap-1 rounded-md bg-amber-400/15 px-2 py-1 text-xs font-medium text-amber-200 hover:bg-amber-400/25"
+          : "inline-flex items-center gap-1 text-xs text-slate-400 hover:text-amber-200"
+      }
+    >
+      Redeem on {portal.name}
+      <ExternalLink className="h-3 w-3" />
+    </a>
   );
 }
 

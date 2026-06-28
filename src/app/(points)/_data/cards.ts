@@ -22,7 +22,8 @@ export const DISCLAIMER =
   "Transfer ratios are program rules but change often — confirm on your bank's " +
   "portal before transferring. Per-mile values are estimates; a mile's real " +
   "worth depends on the exact flight you redeem for (much higher in premium " +
-  "cabins). Use the redemption-value toggle to model this. Not financial advice.";
+  "cabins). Use the redemption-value toggle to model this. Redemption links " +
+  "open the official bank/program portal and may require login. Not financial advice.";
 
 export const DATA_AS_OF = "2024–25";
 
@@ -89,6 +90,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "hdfc-premium-rp",
     currency: "Reward Points",
+    portal: { name: "HDFC SmartBuy", url: "https://offers.smartbuy.hdfcbank.com/" },
     options: [
       {
         id: "smartbuy-flights",
@@ -134,6 +136,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "hdfc-regalia-rp",
     currency: "Reward Points",
+    portal: { name: "HDFC SmartBuy", url: "https://offers.smartbuy.hdfcbank.com/" },
     options: [
       {
         id: "smartbuy-flights",
@@ -177,6 +180,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "hdfc-cashpoints",
     currency: "CashPoints",
+    portal: { name: "HDFC SmartBuy", url: "https://offers.smartbuy.hdfcbank.com/" },
     options: [
       {
         id: "statement",
@@ -196,6 +200,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "axis-edge-rewards",
     currency: "EDGE Reward Points",
+    portal: { name: "Axis EDGE Rewards", url: "https://www.axisbank.com/edge-rewards" },
     options: [
       {
         id: "transfer",
@@ -226,6 +231,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "axis-edge-miles",
     currency: "EDGE Miles",
+    portal: { name: "Axis EDGE / Atlas", url: "https://www.axisbank.com/edge-rewards" },
     options: [
       {
         id: "transfer",
@@ -255,6 +261,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "sbi-rp",
     currency: "Reward Points",
+    portal: { name: "SBI Card Rewards", url: "https://www.sbicard.com/en/personal/rewards.page" },
     options: [
       {
         id: "vouchers",
@@ -274,6 +281,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "icici-rp",
     currency: "Reward Points",
+    portal: { name: "ICICI Rewards", url: "https://www.icicibank.com/personal-banking/cards/credit-card" },
     options: [
       {
         id: "statement",
@@ -292,6 +300,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "icici-amazonpay",
     currency: "Cashback",
+    portal: { name: "Amazon Pay", url: "https://www.amazon.in/amazonpay/home" },
     options: [
       {
         id: "amazon",
@@ -305,6 +314,10 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "amex-mr",
     currency: "Membership Rewards",
+    portal: {
+      name: "Amex Membership Rewards",
+      url: "https://www.americanexpress.com/en-in/rewards/membership-rewards/",
+    },
     options: [
       {
         id: "transfer",
@@ -342,6 +355,10 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "amex-mrcc",
     currency: "Membership Rewards",
+    portal: {
+      name: "Amex Membership Rewards",
+      url: "https://www.americanexpress.com/en-in/rewards/membership-rewards/",
+    },
     options: [
       {
         id: "vouchers",

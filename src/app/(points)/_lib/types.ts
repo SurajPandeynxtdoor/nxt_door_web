@@ -64,6 +64,14 @@ export interface RedemptionOption {
   notes?: string;
   /** Transfer destinations, for transfer_airline / transfer_hotel options. */
   partners?: TransferPartner[];
+  /** Overrides the program portal when this option redeems elsewhere. */
+  portal?: Portal;
+}
+
+/** Where the user actually goes to redeem — the official bank/program portal. */
+export interface Portal {
+  name: string;
+  url: string;
 }
 
 export interface RewardProgram {
@@ -72,6 +80,8 @@ export interface RewardProgram {
   /** Name of the reward currency, e.g. "Reward Points", "EDGE Miles". */
   currency: string;
   options: RedemptionOption[];
+  /** Default redemption portal for this program. */
+  portal?: Portal;
 }
 
 export interface CreditCard {
