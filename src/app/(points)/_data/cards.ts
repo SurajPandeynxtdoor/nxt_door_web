@@ -229,7 +229,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "axis-edge-rewards",
     currency: "EDGE Reward Points",
-    portal: { name: "Axis EDGE Rewards", url: "https://www.axisbank.com/edge-rewards" },
+    portal: { name: "Axis EDGE Rewards", url: "https://www.axisbank.com" },
     options: [
       {
         id: "transfer",
@@ -260,7 +260,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "axis-edge-miles",
     currency: "EDGE Miles",
-    portal: { name: "Axis EDGE / Atlas", url: "https://www.axisbank.com/edge-rewards" },
+    portal: { name: "Axis EDGE / Atlas", url: "https://www.axisbank.com" },
     options: [
       {
         id: "transfer",
@@ -290,7 +290,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "sbi-rp",
     currency: "Reward Points",
-    portal: { name: "SBI Card Rewards", url: "https://www.sbicard.com/en/personal/rewards.page" },
+    portal: { name: "SBI Card Rewards", url: "https://www.sbicard.com" },
     options: [
       {
         id: "vouchers",
@@ -310,7 +310,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "icici-rp",
     currency: "Reward Points",
-    portal: { name: "ICICI Rewards", url: "https://www.icicibank.com/personal-banking/cards/credit-card" },
+    portal: { name: "ICICI Rewards", url: "https://www.icicibank.com" },
     options: [
       {
         id: "statement",
@@ -329,7 +329,7 @@ export const PROGRAMS: RewardProgram[] = [
   {
     id: "icici-amazonpay",
     currency: "Cashback",
-    portal: { name: "Amazon Pay", url: "https://www.amazon.in/amazonpay/home" },
+    portal: { name: "Amazon Pay", url: "https://www.amazon.in/amazonpay" },
     options: [
       {
         id: "amazon",
@@ -345,7 +345,7 @@ export const PROGRAMS: RewardProgram[] = [
     currency: "Membership Rewards",
     portal: {
       name: "Amex Membership Rewards",
-      url: "https://www.americanexpress.com/en-in/rewards/membership-rewards/",
+      url: "https://www.americanexpress.com/en-in/",
     },
     options: [
       {
@@ -386,7 +386,7 @@ export const PROGRAMS: RewardProgram[] = [
     currency: "Membership Rewards",
     portal: {
       name: "Amex Membership Rewards",
-      url: "https://www.americanexpress.com/en-in/rewards/membership-rewards/",
+      url: "https://www.americanexpress.com/en-in/",
     },
     options: [
       {

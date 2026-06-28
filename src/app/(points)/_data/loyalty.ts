@@ -12,7 +12,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Etihad Guest",
     kind: "airline",
     unit: "miles",
-    portal: { name: "Etihad Guest", url: "https://www.etihad.com/en/etihad-guest" },
+    portal: { name: "Etihad Guest", url: "https://www.etihad.com" },
     options: [
       {
         id: "flights",
@@ -47,7 +47,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Singapore Airlines KrisFlyer",
     kind: "airline",
     unit: "miles",
-    portal: { name: "KrisFlyer", url: "https://www.singaporeair.com/en_UK/ppsclub-krisflyer/" },
+    portal: { name: "KrisFlyer", url: "https://www.singaporeair.com" },
     options: [
       {
         id: "saver-flights",
@@ -75,7 +75,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Air India Flying Returns",
     kind: "airline",
     unit: "miles",
-    portal: { name: "Flying Returns", url: "https://www.airindia.com/in/en/flying-returns.html" },
+    portal: { name: "Flying Returns", url: "https://www.airindia.com" },
     options: [
       {
         id: "ai-flights",
@@ -102,7 +102,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Air France-KLM Flying Blue",
     kind: "airline",
     unit: "miles",
-    portal: { name: "Flying Blue", url: "https://www.flyingblue.com/" },
+    portal: { name: "Flying Blue", url: "https://www.flyingblue.com" },
     options: [
       {
         id: "promo",
@@ -124,7 +124,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Qatar Airways Privilege Club (Avios)",
     kind: "airline",
     unit: "miles",
-    portal: { name: "Privilege Club", url: "https://www.qatarairways.com/en/privilegeclub.html" },
+    portal: { name: "Privilege Club", url: "https://www.qatarairways.com" },
     options: [
       {
         id: "flights",
@@ -145,7 +145,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Club Vistara",
     kind: "airline",
     unit: "points",
-    portal: { name: "Air India (CV migrated)", url: "https://www.airindia.com/in/en/flying-returns.html" },
+    portal: { name: "Air India (CV migrated)", url: "https://www.airindia.com" },
     options: [
       {
         id: "ai-migrate",
@@ -167,7 +167,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "InterMiles",
     kind: "airline",
     unit: "miles",
-    portal: { name: "InterMiles", url: "https://www.intermiles.com/" },
+    portal: { name: "InterMiles", url: "https://www.intermiles.com" },
     options: [
       {
         id: "flights",
@@ -194,7 +194,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "IHG One Rewards",
     kind: "hotel",
     unit: "points",
-    portal: { name: "IHG One Rewards", url: "https://www.ihg.com/onerewards/" },
+    portal: { name: "IHG One Rewards", url: "https://www.ihg.com" },
     options: [
       {
         id: "free-nights",
@@ -216,7 +216,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Hilton Honors",
     kind: "hotel",
     unit: "points",
-    portal: { name: "Hilton Honors", url: "https://www.hilton.com/en/hilton-honors/" },
+    portal: { name: "Hilton Honors", url: "https://www.hilton.com" },
     options: [
       {
         id: "free-nights",
@@ -238,7 +238,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Marriott Bonvoy",
     kind: "hotel",
     unit: "points",
-    portal: { name: "Marriott Bonvoy", url: "https://www.marriott.com/loyalty.mi" },
+    portal: { name: "Marriott Bonvoy", url: "https://www.marriott.com" },
     options: [
       {
         id: "free-nights",
@@ -267,7 +267,7 @@ export const LOYALTY_PROGRAMS: LoyaltyProgram[] = [
     name: "Accor Live Limitless (ALL)",
     kind: "hotel",
     unit: "points",
-    portal: { name: "Accor ALL", url: "https://all.accor.com/loyalty-program/" },
+    portal: { name: "Accor ALL", url: "https://all.accor.com" },
     options: [
       {
         id: "stays",

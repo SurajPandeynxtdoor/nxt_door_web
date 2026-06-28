@@ -24,7 +24,7 @@ export interface AwardChart {
 
 export const AWARD_CHARTS: Record<string, AwardChart> = {
   krisflyer: {
-    searchUrl: "https://www.singaporeair.com/en_UK/in/ppsclub-krisflyer/use-miles/flights/",
+    searchUrl: "https://www.singaporeair.com",
     samples: [
       { id: "in-mle-y", label: "India → Maldives", tag: "Economy saver", cost: 17500 },
       { id: "in-sin-y", label: "India → Singapore / SE Asia", tag: "Economy saver", cost: 21000 },
@@ -34,7 +34,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "flying-returns": {
-    searchUrl: "https://www.airindia.com/in/en/flying-returns.html",
+    searchUrl: "https://www.airindia.com",
     samples: [
       { id: "dom-y", label: "Domestic short-haul", tag: "Economy", cost: 10000 },
       { id: "in-gulf-y", label: "India → Gulf", tag: "Economy", cost: 15000 },
@@ -44,7 +44,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "etihad-guest": {
-    searchUrl: "https://www.etihad.com/en/etihad-guest/use-miles/flights",
+    searchUrl: "https://www.etihad.com",
     samples: [
       { id: "in-auh-y", label: "India → Abu Dhabi", tag: "Economy", cost: 15000 },
       { id: "in-eur-y", label: "India → Europe (via AUH)", tag: "Economy", cost: 44000 },
@@ -53,7 +53,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "qatar-privilege": {
-    searchUrl: "https://www.qatarairways.com/en/privilegeclub/spend-avios.html",
+    searchUrl: "https://www.qatarairways.com",
     samples: [
       { id: "in-doh-y", label: "India → Doha", tag: "Economy", cost: 15000 },
       { id: "in-eur-y", label: "India → Europe (via DOH)", tag: "Economy", cost: 50000 },
@@ -61,7 +61,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "flying-blue": {
-    searchUrl: "https://www.flyingblue.com/en/spend/flights",
+    searchUrl: "https://www.flyingblue.com",
     samples: [
       { id: "in-eur-promo", label: "India → Europe (Promo Reward)", tag: "Economy", cost: 25000 },
       { id: "in-eur-y", label: "India → Europe", tag: "Economy", cost: 35000 },
@@ -69,14 +69,14 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "club-vistara": {
-    searchUrl: "https://www.airindia.com/in/en/flying-returns.html",
+    searchUrl: "https://www.airindia.com",
     samples: [
       { id: "dom-y", label: "Domestic short-haul (via Air India)", tag: "Economy", cost: 12000 },
       { id: "in-gulf-y", label: "India → Gulf (via Air India)", tag: "Economy", cost: 16000 },
     ],
   },
   "marriott-bonvoy": {
-    searchUrl: "https://www.marriott.com/loyalty/redeem/free-night-awards.mi",
+    searchUrl: "https://www.marriott.com",
     samples: [
       { id: "cat3", label: "Category 1–3 hotel", tag: "Per night", cost: 12500 },
       { id: "cat4", label: "Category 4 hotel", tag: "Per night", cost: 25000 },
@@ -85,7 +85,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "ihg-one": {
-    searchUrl: "https://www.ihg.com/onerewards/content/us/en/redeem",
+    searchUrl: "https://www.ihg.com",
     samples: [
       { id: "low", label: "Lower-tier hotel", tag: "Per night", cost: 17000 },
       { id: "std", label: "Standard hotel", tag: "Per night", cost: 30000 },
@@ -93,7 +93,7 @@ export const AWARD_CHARTS: Record<string, AwardChart> = {
     ],
   },
   "hilton-honors": {
-    searchUrl: "https://www.hilton.com/en/hilton-honors/points/",
+    searchUrl: "https://www.hilton.com",
     samples: [
       { id: "low", label: "Lower-tier hotel", tag: "Per night", cost: 20000 },
       { id: "std", label: "Standard hotel", tag: "Per night", cost: 40000 },
