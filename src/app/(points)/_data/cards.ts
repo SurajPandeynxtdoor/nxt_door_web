@@ -79,7 +79,28 @@ const marriott = (ratio: number): TransferPartner => ({
   name: "Marriott Bonvoy",
   kind: "hotel",
   ratio,
-  valuePerUnit: 0.55,
+  valuePerUnit: 0.45,
+  notes: "Hotel free-night value. Bonvoy points can transfer onward to airlines.",
+  // Onward: Bonvoy → airline at 3:1, with a 5,000-mile bonus per 60,000
+  // transferred (~3:1.25 effective). Modelled as an effective ratio.
+  onward: [
+    {
+      id: "kf",
+      name: "Singapore Airlines KrisFlyer",
+      kind: "airline",
+      ratio: 1 / 3,
+      valuePerUnit: 0.65,
+      notes: "3 Bonvoy : 1 mile + 5,000-mile bonus per 60,000 transferred.",
+    },
+    {
+      id: "ai",
+      name: "Air India Flying Returns",
+      kind: "airline",
+      ratio: 1 / 3,
+      valuePerUnit: 0.55,
+      notes: "3 Bonvoy : 1 mile + 5,000-mile bonus per 60,000 transferred.",
+    },
+  ],
 });
 
 // ---------------------------------------------------------------------------

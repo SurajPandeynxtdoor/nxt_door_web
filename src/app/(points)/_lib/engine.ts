@@ -1,5 +1,6 @@
 import type {
   CreditCard,
+  OnwardTransfer,
   Portal,
   RedemptionCategory,
   RedemptionOption,
@@ -22,12 +23,26 @@ export const MODE_LABEL: Record<RedemptionMode, string> = {
   premium: "Premium-cabin redemptions",
 };
 
+export interface OnwardValuation {
+  transfer: OnwardTransfer;
+  /** Onward units received: partner units * onward ratio. */
+  units: number;
+  /** INR value of the onward units (mode multiplier applied for airlines). */
+  value: number;
+}
+
 export interface PartnerValuation {
   partner: TransferPartner;
   /** Partner miles/points received: points * ratio. */
   units: number;
-  /** INR value: units * valuePerUnit * mode multiplier. */
+  /** INR value if you stop at this partner. */
+  directValue: number;
+  /** Onward transfers from this partner, best value first. */
+  onward: OnwardValuation[];
+  /** Best achievable value via this partner: max(direct, best onward). */
   value: number;
+  /** Set when an onward transfer beats stopping here — the value-enhancing hop. */
+  bestVia?: OnwardValuation;
 }
 
 export interface OptionValuation {
@@ -67,6 +82,16 @@ function isTransfer(option: RedemptionOption): boolean {
   );
 }
 
+/** The cabin/redemption multiplier only applies to airline redemptions. */
+function valueFor(
+  units: number,
+  valuePerUnit: number,
+  kind: "airline" | "hotel",
+  multiplier: number
+): number {
+  return round2(units * valuePerUnit * (kind === "airline" ? multiplier : 1));
+}
+
 function valuatePartners(
   option: RedemptionOption,
   points: number,
@@ -76,10 +101,39 @@ function valuatePartners(
   return option.partners
     .map((partner) => {
       const units = round2(points * partner.ratio);
+      const directValue = valueFor(
+        units,
+        partner.valuePerUnit,
+        partner.kind,
+        multiplier
+      );
+
+      const onward: OnwardValuation[] = (partner.onward ?? [])
+        .map((transfer) => {
+          const onwardUnits = round2(units * transfer.ratio);
+          return {
+            transfer,
+            units: onwardUnits,
+            value: valueFor(
+              onwardUnits,
+              transfer.valuePerUnit,
+              transfer.kind,
+              multiplier
+            ),
+          };
+        })
+        .sort((a, b) => b.value - a.value);
+
+      const bestOnward = onward[0];
+      const viaWins = bestOnward && bestOnward.value > directValue;
+
       return {
         partner,
         units,
-        value: round2(units * partner.valuePerUnit * multiplier),
+        directValue,
+        onward,
+        value: viaWins ? bestOnward.value : directValue,
+        bestVia: viaWins ? bestOnward : undefined,
       };
     })
     .sort((a, b) => b.value - a.value);

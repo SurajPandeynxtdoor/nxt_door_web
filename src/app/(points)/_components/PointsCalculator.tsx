@@ -8,6 +8,7 @@ import {
   MODE_LABEL,
   type CardValuation,
   type OptionValuation,
+  type PartnerValuation,
   type RedemptionMode,
 } from "../_lib/engine";
 import {
@@ -314,6 +315,9 @@ export default function PointsCalculator() {
                           <span className="text-amber-300">
                             {" "}
                             · {r.best.bestPartner.partner.name}
+                            {r.best.bestPartner.bestVia && (
+                              <> → {r.best.bestPartner.bestVia.transfer.name}</>
+                            )}
                           </span>
                         )}{" "}
                         <span className="text-slate-500">
@@ -372,8 +376,10 @@ export default function PointsCalculator() {
               <Plane className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-300" />
               Airline transfers shine for premium-cabin flights. Switch the mile
               value to “Premium cabin” to see how much more your points can be
-              worth — and always check award availability before transferring,
-              as transfers are usually irreversible.
+              worth, and expand a transfer to spot onward hops (e.g. a hotel
+              program → airline) tagged “better value”. Always check award
+              availability before transferring, as transfers are usually
+              irreversible.
             </p>
           )}
         </section>
@@ -428,32 +434,74 @@ function OptionRow({
       </div>
 
       {partners.length > 0 && (
-        <ul className="mt-2 space-y-1.5 border-l border-white/10 pl-3">
+        <ul className="mt-2 space-y-2 border-l border-white/10 pl-3">
           {partners.map((p, i) => (
-            <li
-              key={p.partner.id}
-              className="flex items-center justify-between gap-3 text-xs"
-            >
-              <span
-                className={
-                  i === 0 ? "font-medium text-amber-200" : "text-slate-400"
-                }
-              >
-                {i === 0 && "★ "}
-                {p.partner.name}{" "}
-                <span className="text-slate-600">
-                  ({formatRatio(p.partner.ratio)} ·{" "}
-                  {num.format(Math.round(p.units))} {p.partner.kind === "hotel" ? "pts" : "miles"})
-                </span>
-              </span>
-              <span className="shrink-0 tabular-nums text-slate-300">
-                {formatInr(p.value)}
-              </span>
-            </li>
+            <PartnerRow key={p.partner.id} valuation={p} isBest={i === 0} />
           ))}
         </ul>
       )}
     </div>
+  );
+}
+
+function unitLabel(kind: "airline" | "hotel"): string {
+  return kind === "hotel" ? "pts" : "miles";
+}
+
+function PartnerRow({
+  valuation,
+  isBest,
+}: {
+  valuation: PartnerValuation;
+  isBest: boolean;
+}) {
+  const { partner, units, directValue, onward, bestVia } = valuation;
+  return (
+    <li className="text-xs">
+      <div className="flex items-center justify-between gap-3">
+        <span className={isBest ? "font-medium text-amber-200" : "text-slate-400"}>
+          {isBest && "★ "}
+          {partner.name}{" "}
+          <span className="text-slate-600">
+            ({formatRatio(partner.ratio)} · {num.format(Math.round(units))}{" "}
+            {unitLabel(partner.kind)})
+          </span>
+        </span>
+        <span className="shrink-0 tabular-nums text-slate-300">
+          {formatInr(directValue)}
+        </span>
+      </div>
+
+      {onward.length > 0 && (
+        <ul className="mt-1 space-y-1 border-l border-white/10 pl-3">
+          {onward.map((o) => {
+            const wins = bestVia?.transfer.id === o.transfer.id;
+            return (
+              <li
+                key={o.transfer.id}
+                className="flex items-center justify-between gap-3"
+              >
+                <span className={wins ? "text-amber-200" : "text-slate-500"}>
+                  → then {o.transfer.name}{" "}
+                  <span className="text-slate-600">
+                    ({formatRatio(o.transfer.ratio)} ·{" "}
+                    {num.format(Math.round(o.units))} {unitLabel(o.transfer.kind)})
+                  </span>
+                  {wins && (
+                    <span className="ml-1 rounded bg-amber-400/20 px-1 text-[10px] font-medium text-amber-300">
+                      better value
+                    </span>
+                  )}
+                </span>
+                <span className="shrink-0 tabular-nums text-slate-400">
+                  {formatInr(o.value)}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </li>
   );
 }
 

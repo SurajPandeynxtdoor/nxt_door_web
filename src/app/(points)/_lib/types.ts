@@ -38,6 +38,22 @@ export const CATEGORY_LABEL: Record<RedemptionCategory, string> = {
  * concrete, factual lever. `valuePerUnit` is an approximate INR value of one
  * partner unit on a typical economy redemption and can be tuned in the UI.
  */
+/**
+ * An onward transfer FROM a transfer partner INTO a further loyalty program
+ * (e.g. Marriott Bonvoy → an airline). Lets the engine evaluate multi-hop
+ * chains and surface cases where one more hop extracts more value.
+ */
+export interface OnwardTransfer {
+  id: string;
+  name: string;
+  kind: "airline" | "hotel";
+  /** Onward units credited per 1 unit of the intermediate program. */
+  ratio: number;
+  /** Approximate INR value of one onward unit (baseline economy redemption). */
+  valuePerUnit: number;
+  notes?: string;
+}
+
 export interface TransferPartner {
   id: string;
   name: string;
@@ -47,6 +63,8 @@ export interface TransferPartner {
   /** Approximate INR value of one partner unit (baseline economy redemption). */
   valuePerUnit: number;
   notes?: string;
+  /** Further programs this partner's units can be transferred into. */
+  onward?: OnwardTransfer[];
 }
 
 export interface RedemptionOption {
