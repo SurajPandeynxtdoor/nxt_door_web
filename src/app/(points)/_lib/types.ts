@@ -65,6 +65,8 @@ export interface TransferPartner {
   notes?: string;
   /** Further programs this partner's units can be transferred into. */
   onward?: OnwardTransfer[];
+  /** Links to a LoyaltyProgram id, enabling the pool-and-redeem view. */
+  loyaltyId?: string;
 }
 
 export interface RedemptionOption {

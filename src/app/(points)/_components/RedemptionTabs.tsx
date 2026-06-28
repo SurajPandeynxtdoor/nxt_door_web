@@ -1,15 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { CreditCard, Plane } from "lucide-react";
+import { CreditCard, Layers, Plane } from "lucide-react";
 import PointsCalculator from "./PointsCalculator";
 import MilesCalculator from "./MilesCalculator";
+import CombinedCalculator from "./CombinedCalculator";
 
-type Tab = "cards" | "miles";
+type Tab = "cards" | "miles" | "pool";
 
 const TABS: { key: Tab; label: string; icon: typeof CreditCard }[] = [
   { key: "cards", label: "Credit card points", icon: CreditCard },
   { key: "miles", label: "Airline & hotel miles", icon: Plane },
+  { key: "pool", label: "Pool & redeem", icon: Layers },
 ];
 
 export default function RedemptionTabs() {
@@ -36,7 +38,9 @@ export default function RedemptionTabs() {
         ))}
       </div>
 
-      {tab === "cards" ? <PointsCalculator /> : <MilesCalculator />}
+      {tab === "cards" && <PointsCalculator />}
+      {tab === "miles" && <MilesCalculator />}
+      {tab === "pool" && <CombinedCalculator />}
     </div>
   );
 }

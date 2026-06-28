@@ -1,6 +1,6 @@
 "use client";
 
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, Plus, X } from "lucide-react";
 import type { Portal } from "../_lib/types";
 
 export const inr = new Intl.NumberFormat("en-IN", {
@@ -56,6 +56,54 @@ export function StepHeading({
         <h2 className="text-lg font-semibold text-slate-100">{title}</h2>
       </div>
       <p className="mt-1 pl-8 text-sm text-slate-400">{subtitle}</p>
+    </div>
+  );
+}
+
+/** Grouped chip selector used by the card / program pickers. */
+export function ChipPicker({
+  groups,
+  selected,
+  onToggle,
+}: {
+  groups: { label: string; items: { id: string; name: string }[] }[];
+  selected: Set<string>;
+  onToggle: (id: string) => void;
+}) {
+  return (
+    <div className="space-y-4">
+      {groups.map((group) => (
+        <div key={group.label}>
+          <p className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">
+            {group.label}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {group.items.map((item) => {
+              const active = selected.has(item.id);
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => onToggle(item.id)}
+                  className={[
+                    "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors",
+                    active
+                      ? "border-amber-400 bg-amber-400/15 text-amber-200"
+                      : "border-white/10 bg-white/5 text-slate-300 hover:border-white/25 hover:bg-white/10",
+                  ].join(" ")}
+                >
+                  {active ? (
+                    <X className="h-3.5 w-3.5" />
+                  ) : (
+                    <Plus className="h-3.5 w-3.5" />
+                  )}
+                  {item.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

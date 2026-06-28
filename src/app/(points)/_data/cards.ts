@@ -38,6 +38,7 @@ const airIndia = (ratio: number): TransferPartner => ({
   kind: "airline",
   ratio,
   valuePerUnit: 0.5,
+  loyaltyId: "flying-returns",
 });
 const krisflyer = (ratio: number): TransferPartner => ({
   id: "krisflyer",
@@ -45,6 +46,7 @@ const krisflyer = (ratio: number): TransferPartner => ({
   kind: "airline",
   ratio,
   valuePerUnit: 0.6,
+  loyaltyId: "krisflyer",
 });
 const qatar = (ratio: number): TransferPartner => ({
   id: "qatar",
@@ -52,6 +54,7 @@ const qatar = (ratio: number): TransferPartner => ({
   kind: "airline",
   ratio,
   valuePerUnit: 0.55,
+  loyaltyId: "qatar-privilege",
 });
 const etihad = (ratio: number): TransferPartner => ({
   id: "etihad",
@@ -59,6 +62,7 @@ const etihad = (ratio: number): TransferPartner => ({
   kind: "airline",
   ratio,
   valuePerUnit: 0.45,
+  loyaltyId: "etihad-guest",
 });
 const flyingBlue = (ratio: number): TransferPartner => ({
   id: "flying-blue",
@@ -66,6 +70,7 @@ const flyingBlue = (ratio: number): TransferPartner => ({
   kind: "airline",
   ratio,
   valuePerUnit: 0.5,
+  loyaltyId: "flying-blue",
 });
 const britishAirways = (ratio: number): TransferPartner => ({
   id: "ba-avios",
@@ -80,6 +85,7 @@ const marriott = (ratio: number): TransferPartner => ({
   kind: "hotel",
   ratio,
   valuePerUnit: 0.45,
+  loyaltyId: "marriott-bonvoy",
   notes: "Hotel free-night value. Bonvoy points can transfer onward to airlines.",
   // Onward: Bonvoy → airline at 3:1, with a 5,000-mile bonus per 60,000
   // transferred (~3:1.25 effective). Modelled as an effective ratio.
