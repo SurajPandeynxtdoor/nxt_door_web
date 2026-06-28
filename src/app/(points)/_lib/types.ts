@@ -118,3 +118,44 @@ export interface CreditCard {
     note?: string;
   };
 }
+
+// ---------------------------------------------------------------------------
+// Loyalty programs the user already holds points in (airline / hotel), valued
+// independently of any credit card.
+// ---------------------------------------------------------------------------
+
+export type LoyaltyCategory =
+  | "flight"
+  | "hotel"
+  | "voucher"
+  | "transfer"
+  | "other";
+
+export const LOYALTY_CATEGORY_LABEL: Record<LoyaltyCategory, string> = {
+  flight: "Flights",
+  hotel: "Hotels",
+  voucher: "Vouchers",
+  transfer: "Transfer out",
+  other: "Other",
+};
+
+export interface LoyaltyRedemption {
+  id: string;
+  label: string;
+  category: LoyaltyCategory;
+  /** Approximate INR value of one mile/point on this redemption (baseline). */
+  valuePerUnit: number;
+  notes?: string;
+  portal?: Portal;
+}
+
+export interface LoyaltyProgram {
+  id: string;
+  name: string;
+  kind: "airline" | "hotel";
+  /** Unit noun for display: "miles" or "points". */
+  unit: "miles" | "points";
+  options: LoyaltyRedemption[];
+  /** Default redemption portal for the program. */
+  portal?: Portal;
+}

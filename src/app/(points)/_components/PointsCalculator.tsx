@@ -1,8 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { ChevronDown, ExternalLink, Plane, Plus, Trophy, X } from "lucide-react";
+import { ChevronDown, Plane, Plus, Trophy, X } from "lucide-react";
 import { CARDS, getCard } from "../_data/cards";
+import { formatInr, num, RedeemLink, StepHeading } from "./shared";
 import {
   compareCards,
   MODE_LABEL,
@@ -18,17 +19,6 @@ import {
 } from "../_lib/types";
 
 const DEFAULT_POINTS = 25000;
-
-const inr = new Intl.NumberFormat("en-IN", {
-  style: "currency",
-  currency: "INR",
-  maximumFractionDigits: 0,
-});
-const num = new Intl.NumberFormat("en-IN");
-
-function formatInr(value: number): string {
-  return inr.format(Math.round(value));
-}
 
 /** Render a transfer ratio (partner units per point) as "1:1", "2:1", "5:2". */
 function formatRatio(ratio: number): string {
@@ -502,51 +492,5 @@ function PartnerRow({
         </ul>
       )}
     </li>
-  );
-}
-
-function RedeemLink({
-  portal,
-  prominent = false,
-}: {
-  portal: { name: string; url: string };
-  prominent?: boolean;
-}) {
-  return (
-    <a
-      href={portal.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={
-        prominent
-          ? "inline-flex items-center gap-1 rounded-md bg-amber-400/15 px-2 py-1 text-xs font-medium text-amber-200 hover:bg-amber-400/25"
-          : "inline-flex items-center gap-1 text-xs text-slate-400 hover:text-amber-200"
-      }
-    >
-      Redeem on {portal.name}
-      <ExternalLink className="h-3 w-3" />
-    </a>
-  );
-}
-
-function StepHeading({
-  step,
-  title,
-  subtitle,
-}: {
-  step: number;
-  title: string;
-  subtitle: string;
-}) {
-  return (
-    <div className="mb-4">
-      <div className="flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400 text-xs font-bold text-slate-900">
-          {step}
-        </span>
-        <h2 className="text-lg font-semibold text-slate-100">{title}</h2>
-      </div>
-      <p className="mt-1 pl-8 text-sm text-slate-400">{subtitle}</p>
-    </div>
   );
 }
