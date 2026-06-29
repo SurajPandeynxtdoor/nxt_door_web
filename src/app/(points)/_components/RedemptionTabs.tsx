@@ -6,6 +6,7 @@ import PointsCalculator from "./PointsCalculator";
 import MilesCalculator from "./MilesCalculator";
 import CombinedCalculator from "./CombinedCalculator";
 import BestHomeCalculator from "./BestHomeCalculator";
+import { TripBar, TripProvider } from "./trip";
 
 type Tab = "cards" | "miles" | "pool" | "best";
 
@@ -20,15 +21,15 @@ export default function RedemptionTabs() {
   const [tab, setTab] = useState<Tab>("cards");
 
   return (
-    <div>
-      <div className="mb-8 inline-flex rounded-xl border border-white/10 bg-white/5 p-1">
+    <TripProvider>
+      <div className="mb-6 flex flex-wrap gap-1 rounded-xl border border-white/10 bg-white/5 p-1">
         {TABS.map(({ key, label, icon: Icon }) => (
           <button
             key={key}
             type="button"
             onClick={() => setTab(key)}
             className={[
-              "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+              "inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors sm:px-4",
               tab === key
                 ? "bg-amber-400 text-slate-900"
                 : "text-slate-300 hover:bg-white/10",
@@ -40,10 +41,12 @@ export default function RedemptionTabs() {
         ))}
       </div>
 
+      <TripBar />
+
       {tab === "cards" && <PointsCalculator />}
       {tab === "miles" && <MilesCalculator />}
       {tab === "pool" && <CombinedCalculator />}
       {tab === "best" && <BestHomeCalculator />}
-    </div>
+    </TripProvider>
   );
 }

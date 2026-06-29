@@ -326,6 +326,7 @@ export default function PointsCalculator() {
                               programId={dest.id}
                               available={dest.units}
                               unit={dest.kind === "hotel" ? "points" : "miles"}
+                              kind={dest.kind}
                             />
                           ) : null;
                         })()}

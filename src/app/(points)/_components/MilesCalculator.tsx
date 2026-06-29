@@ -260,6 +260,7 @@ export default function MilesCalculator() {
                       programId={r.program.id}
                       available={r.points}
                       unit={r.program.unit}
+                      kind={r.program.kind}
                     />
                   </div>
 

@@ -299,6 +299,7 @@ function PooledCard({
         programId={r.program.id}
         available={r.pooled}
         unit={r.program.unit}
+        kind={r.program.kind}
       />
 
       {r.best.portal && (

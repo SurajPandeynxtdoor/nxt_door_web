@@ -179,6 +179,7 @@ export default function BestHomeCalculator() {
                           programId={dest.id}
                           available={dest.units}
                           unit={dest.unit}
+                          kind={dest.unit === "miles" ? "airline" : "hotel"}
                         />
                       )}
                     </div>

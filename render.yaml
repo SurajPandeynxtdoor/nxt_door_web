@@ -21,3 +21,10 @@ services:
       # Required for the payment page (Razorpay). Also build-time inlined.
       - key: NEXT_PUBLIC_RAZORPAY_KEY
         sync: false
+      # Optional: enables live award-search in the /points tool. Runtime-only
+      # (read by the /api/award-search route), so no rebuild needed to set them.
+      # Leave unset to keep the tool on prefilled deep links only.
+      - key: AWARD_API_URL
+        sync: false
+      - key: AWARD_API_KEY
+        sync: false
