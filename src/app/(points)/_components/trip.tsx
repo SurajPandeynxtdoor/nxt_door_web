@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { Plane } from "lucide-react";
+import { ExternalLink, Plane } from "lucide-react";
+import { googleFlightsUrl, hasRoute } from "../_lib/links";
 
 export interface Trip {
   origin: string;
@@ -74,11 +75,29 @@ export function TripBar() {
           aria-label="Travel date"
           className="rounded-lg border border-white/10 bg-slate-900 px-3 py-1.5 text-slate-100 outline-none focus:border-amber-400 [color-scheme:dark]"
         />
-        <span className="text-xs text-slate-500">
-          Use 3-letter airport codes (e.g. BOM, DEL, SIN) to prefill the fare
-          links.
-        </span>
+        {hasRoute(trip) ? (
+          <a
+            href={googleFlightsUrl(trip)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 rounded-lg bg-amber-400 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-amber-300"
+          >
+            See {trip.origin}→{trip.destination} flights
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        ) : (
+          <span className="text-xs text-slate-500">
+            Use 3-letter airport codes (e.g. BOM, DEL, SIN).
+          </span>
+        )}
       </div>
+      {hasRoute(trip) && (
+        <p className="mt-2 text-xs text-slate-500">
+          Showing live fares for {trip.origin}→{trip.destination}. Expand any
+          result&apos;s “Check fares in points” to see what that route costs in
+          miles and whether your balance covers it.
+        </p>
+      )}
     </div>
   );
 }
