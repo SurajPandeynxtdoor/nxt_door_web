@@ -9,17 +9,12 @@ export function googleFlightsUrl(trip: Trip): string {
 
 /**
  * Carrier deep links that accept origin/destination/date query params on a
- * stable base path. Only carriers we're confident about are listed; everything
- * else falls back to the program's root search URL (no 404 risk). Award PRICES
- * still require login, but the route is prefilled.
+ * VERIFIED, stable base path. Intentionally empty until each URL is confirmed —
+ * we never ship guessed deep paths (they 404). Route-prefilled search is
+ * delivered reliably via Google Flights; the carrier link falls back to the
+ * program's root URL (award prices need login there anyway).
  */
-const CARRIER_DEEP_LINKS: Record<string, (t: Trip) => string> = {
-  // Air India books revenue/award searches off its booking widget params.
-  "flying-returns": (t) =>
-    `https://www.airindia.com/in/en/book/flight-search.html?tripType=ON&origin=${t.origin}&destination=${t.destination}${t.date ? `&departureDate=${t.date}` : ""}`,
-  "club-vistara": (t) =>
-    `https://www.airindia.com/in/en/book/flight-search.html?tripType=ON&origin=${t.origin}&destination=${t.destination}${t.date ? `&departureDate=${t.date}` : ""}`,
-};
+const CARRIER_DEEP_LINKS: Record<string, (t: Trip) => string> = {};
 
 /** True when both endpoints look like valid 3-letter IATA codes. */
 export function hasRoute(trip: Trip | null): trip is Trip {
