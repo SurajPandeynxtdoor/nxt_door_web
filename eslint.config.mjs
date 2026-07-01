@@ -10,6 +10,9 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  // The contact-match/ folder is a separate standalone app (Expo + Node backend)
+  // with its own tooling; keep it out of the Next.js web app's lint/build.
+  { ignores: ["contact-match/**"] },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
 ];
 
