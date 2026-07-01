@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Contact Match",
+    "slug": "contact-match",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.contactmatch",
+      "infoPlist": {
+        "NSContactsUsageDescription": "Contact Match compares your contacts against other users to find people you both know. Numbers are hashed on your device and never leave it in readable form."
+      }
+    },
+    "android": {
+      "package": "com.example.contactmatch",
+      "permissions": ["android.permission.READ_CONTACTS"]
+    },
+    "plugins": [
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Contact Match uses your contacts only to find mutual connections. Numbers are hashed on-device before anything is sent."
+        }
+      ]
+    ]
+  }
+}
